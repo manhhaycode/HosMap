@@ -111,11 +111,11 @@
     width: 100%;
     height: 100%;
     position: absolute;
+    left: 420px;
 }
 
 #content .container-function-map{
     min-width: 420px;
-    width: 500px;
     height: calc(100vh - 55px);
     background-color: #fff;
     position: relative;
