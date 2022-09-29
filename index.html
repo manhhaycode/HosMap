@@ -4,37 +4,24 @@
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/base.css">
   <link href = "https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab|Roboto:300,400,500,700" rel = "stylesheet" />
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 <body>
   <div id="header">
     <div id="nav">
       <div class="container_nav">
-        <div class="container_nav--logo-img">
-          <img class="img_logo" src="./assets/img/logo.png" alt="">
+        <div class="container_nav--logo">
+          <img src="./assets/img/hospital-logo2.png"  class="nav--logo_img" alt="">
+          <div class="nav--logo_text">HosMap</div>
         </div>
 
-        <!-- <div class="container_nav-function">
-          <div class="container_nav--option">
-            <div class="language-box--VN">
-                <span class="language-box--VN-value">VI</span>
-            </div>
-  
-            <div class="language-box--EN">
-              <span class="language-box--background-EN-value">EN</span>
-            </div>
-          </div>
-          <div class="spacer"></div> -->
           <div class="region-box">
             <button class="region-box--button">
               <fa-icon class="region-box--button-icon"><svg role="img" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marked-alt" class="svg-inline--fa fa-map-marked-alt fa-w-18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M288 0c-69.59 0-126 56.41-126 126 0 56.26 82.35 158.8 113.9 196.02 6.39 7.54 17.82 7.54 24.2 0C331.65 284.8 414 182.26 414 126 414 56.41 357.59 0 288 0zm0 168c-23.2 0-42-18.8-42-42s18.8-42 42-42 42 18.8 42 42-18.8 42-42 42zM20.12 215.95A32.006 32.006 0 0 0 0 245.66v250.32c0 11.32 11.43 19.06 21.94 14.86L160 448V214.92c-8.84-15.98-16.07-31.54-21.25-46.42L20.12 215.95zM288 359.67c-14.07 0-27.38-6.18-36.51-16.96-19.66-23.2-40.57-49.62-59.49-76.72v182l192 64V266c-18.92 27.09-39.82 53.52-59.49 76.72-9.13 10.77-22.44 16.95-36.51 16.95zm266.06-198.51L416 224v288l139.88-55.95A31.996 31.996 0 0 0 576 426.34V176.02c0-11.32-11.43-19.06-21.94-14.86z"></path></svg></fa-icon>
               <span class="region-box--button-name"> Ho Chi Minh City 🇻🇳 </span>
             </button>
           </div>
-        </div>
-        
       </div>
-
-
     </div>
   </div>
 
@@ -70,8 +57,179 @@
           <div class="tab-funtion-map--controls__header">
             <input class="find-hos-input" type="text" placeholder="Tìm bệnh viện">
           </div>
+
+          <div class="tab-funtion-map--controls__hospitals-list">
+            
+            <div class="tab-funtion-map--controls__hospital-container">
+              <div class="tab-funtion-map--controls__hospital-name-address">
+                <div class="hospital-name-address--icon">
+                  <img src="./assets/img/icons8-hospital-64.png" class="hospital-name-address--icon__img" alt="">
+                </div>
+
+                <div class="hospital-name-address--text">
+                  <h2 class="hospital--name">Bệnh viện quận 9</h2>
+                  <p class="hospital--address">387 Lê Văn Việt, Phường Tăng Nhơn Phú A , Quận 9 , Hồ Chí Minh</p>
+                </div>
+              </div>
+              <div class="tab-funtion-map--controls__hospital-info">
+
+                  <button class="phone-number">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="phone-number--icon" fill="#4069E5FF" id="Flat" viewBox="0 0 256 256"><path d="M176,224C96.59766,224,32,159.40234,32,80A56.07029,56.07029,0,0,1,80.91992,24.44434a16.037,16.037,0,0,1,16.65235,9.583l20.09179,46.87793a15.96924,15.96924,0,0,1-1.32031,15.06641L99.709,121.38965l-.00195.00195a76.54083,76.54083,0,0,0,35.20508,35.04981l25.043-16.69336a15.95163,15.95163,0,0,1,15.17871-1.39453l46.83789,20.07324a16.03476,16.03476,0,0,1,9.584,16.65234A56.07032,56.07032,0,0,1,176,224ZM82.86621,40.33105A40.01746,40.01746,0,0,0,48,80,128.1454,128.1454,0,0,0,176,208a40.04283,40.04283,0,0,0,39.68262-34.92578L168.832,153.06055l-25.03515,16.69433a15.98041,15.98041,0,0,1-15.74512,1.14063,92.59535,92.59535,0,0,1-42.76367-42.56934,15.993,15.993,0,0,1,1.03222-15.69824l16.63574-25.419Zm52.1416,116.15625h0Z"/></svg>
+                    <p class="phone-number--text">02838973628</p>
+                  </button>
+                  
+                  <div class="distance-hospital">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="distance-hospital--icon" fill="#ef9834" id="Flat" viewBox="0 0 256 256">
+                      <path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/>
+                    </svg>
+                    <p class="distance-hospital--text">5km</p>
+                  </div>
+
+                  <div class="ambulance-status">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill="#1DD75B" id="Flat" viewBox="0 0 256 256">
+                      <path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/>
+                    </svg>
+                    <p class="ambulance-status--text">Còn xe</p>
+                  </div>
+
+                  <div class="hospital-ratings">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="hospital-ratings--icon" fill="#FFDC00" id="Flat" viewBox="0 0 256 256">
+                      <path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/>
+                    </svg>
+                    <p class="hospital-ratings--text">Rank S</p>
+                  </div>
+              </div>
+            </div>
+            
+            <div class="tab-funtion-map--controls__hospital-container">
+              <div class="tab-funtion-map--controls__hospital-name-address">
+                <div class="hospital-name-address--icon">
+                  <img src="./assets/img/icons8-hospital-64.png" class="hospital-name-address--icon__img" alt="">
+                </div>
+
+                <div class="hospital-name-address--text">
+                  <h2 class="hospital--name">Bệnh viện quận 9</h2>
+                  <p class="hospital--address">387 Lê Văn Việt, Phường Tăng Nhơn Phú A , Quận 9 , Hồ Chí Minh</p>
+                </div>
+              </div>
+              <div class="tab-funtion-map--controls__hospital-info">
+
+                  <button class="phone-number">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="phone-number--icon" fill="#4069E5FF" id="Flat" viewBox="0 0 256 256"><path d="M176,224C96.59766,224,32,159.40234,32,80A56.07029,56.07029,0,0,1,80.91992,24.44434a16.037,16.037,0,0,1,16.65235,9.583l20.09179,46.87793a15.96924,15.96924,0,0,1-1.32031,15.06641L99.709,121.38965l-.00195.00195a76.54083,76.54083,0,0,0,35.20508,35.04981l25.043-16.69336a15.95163,15.95163,0,0,1,15.17871-1.39453l46.83789,20.07324a16.03476,16.03476,0,0,1,9.584,16.65234A56.07032,56.07032,0,0,1,176,224ZM82.86621,40.33105A40.01746,40.01746,0,0,0,48,80,128.1454,128.1454,0,0,0,176,208a40.04283,40.04283,0,0,0,39.68262-34.92578L168.832,153.06055l-25.03515,16.69433a15.98041,15.98041,0,0,1-15.74512,1.14063,92.59535,92.59535,0,0,1-42.76367-42.56934,15.993,15.993,0,0,1,1.03222-15.69824l16.63574-25.419Zm52.1416,116.15625h0Z"/></svg>
+                    <p class="phone-number--text">02838973628</p>
+                  </button>
+                  
+                  <div class="distance-hospital">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="distance-hospital--icon" fill="#ef9834" id="Flat" viewBox="0 0 256 256">
+                      <path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/>
+                    </svg>
+                    <p class="distance-hospital--text">5km</p>
+                  </div>
+
+                  <div class="ambulance-status">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill="#1DD75B" id="Flat" viewBox="0 0 256 256">
+                      <path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/>
+                    </svg>
+                    <p class="ambulance-status--text">Còn xe</p>
+                  </div>
+
+                  <div class="hospital-ratings">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="hospital-ratings--icon" fill="#FFDC00" id="Flat" viewBox="0 0 256 256">
+                      <path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/>
+                    </svg>
+                    <p class="hospital-ratings--text">Rank S</p>
+                  </div>
+              </div>
+            </div>
+
+            <div class="tab-funtion-map--controls__hospital-container">
+              <div class="tab-funtion-map--controls__hospital-name-address">
+                <div class="hospital-name-address--icon">
+                  <img src="./assets/img/icons8-hospital-64.png" class="hospital-name-address--icon__img" alt="">
+                </div>
+
+                <div class="hospital-name-address--text">
+                  <h2 class="hospital--name">Bệnh viện quận 9</h2>
+                  <p class="hospital--address">387 Lê Văn Việt, Phường Tăng Nhơn Phú A , Quận 9 , Hồ Chí Minh</p>
+                </div>
+              </div>
+              <div class="tab-funtion-map--controls__hospital-info">
+
+                  <button class="phone-number">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="phone-number--icon" fill="#4069E5FF" id="Flat" viewBox="0 0 256 256"><path d="M176,224C96.59766,224,32,159.40234,32,80A56.07029,56.07029,0,0,1,80.91992,24.44434a16.037,16.037,0,0,1,16.65235,9.583l20.09179,46.87793a15.96924,15.96924,0,0,1-1.32031,15.06641L99.709,121.38965l-.00195.00195a76.54083,76.54083,0,0,0,35.20508,35.04981l25.043-16.69336a15.95163,15.95163,0,0,1,15.17871-1.39453l46.83789,20.07324a16.03476,16.03476,0,0,1,9.584,16.65234A56.07032,56.07032,0,0,1,176,224ZM82.86621,40.33105A40.01746,40.01746,0,0,0,48,80,128.1454,128.1454,0,0,0,176,208a40.04283,40.04283,0,0,0,39.68262-34.92578L168.832,153.06055l-25.03515,16.69433a15.98041,15.98041,0,0,1-15.74512,1.14063,92.59535,92.59535,0,0,1-42.76367-42.56934,15.993,15.993,0,0,1,1.03222-15.69824l16.63574-25.419Zm52.1416,116.15625h0Z"/></svg>
+                    <p class="phone-number--text">02838973628</p>
+                  </button>
+                  
+                  <div class="distance-hospital">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="distance-hospital--icon" fill="#ef9834" id="Flat" viewBox="0 0 256 256">
+                      <path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/>
+                    </svg>
+                    <p class="distance-hospital--text">5km</p>
+                  </div>
+
+                  <div class="ambulance-status">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill="#1DD75B" id="Flat" viewBox="0 0 256 256">
+                      <path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/>
+                    </svg>
+                    <p class="ambulance-status--text">Còn xe</p>
+                  </div>
+
+                  <div class="hospital-ratings">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="hospital-ratings--icon" fill="#FFDC00" id="Flat" viewBox="0 0 256 256">
+                      <path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/>
+                    </svg>
+                    <p class="hospital-ratings--text">Rank S</p>
+                  </div>
+              </div>
+            </div>
+
+            <div class="tab-funtion-map--controls__hospital-container">
+              <div class="tab-funtion-map--controls__hospital-name-address">
+                <div class="hospital-name-address--icon">
+                  <img src="./assets/img/icons8-hospital-64.png" class="hospital-name-address--icon__img" alt="">
+                </div>
+
+                <div class="hospital-name-address--text">
+                  <h2 class="hospital--name">Bệnh viện quận 9</h2>
+                  <p class="hospital--address">387 Lê Văn Việt, Phường Tăng Nhơn Phú A , Quận 9 , Hồ Chí Minh</p>
+                </div>
+              </div>
+              <div class="tab-funtion-map--controls__hospital-info">
+
+                  <button class="phone-number">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="phone-number--icon" fill="#4069E5FF" id="Flat" viewBox="0 0 256 256"><path d="M176,224C96.59766,224,32,159.40234,32,80A56.07029,56.07029,0,0,1,80.91992,24.44434a16.037,16.037,0,0,1,16.65235,9.583l20.09179,46.87793a15.96924,15.96924,0,0,1-1.32031,15.06641L99.709,121.38965l-.00195.00195a76.54083,76.54083,0,0,0,35.20508,35.04981l25.043-16.69336a15.95163,15.95163,0,0,1,15.17871-1.39453l46.83789,20.07324a16.03476,16.03476,0,0,1,9.584,16.65234A56.07032,56.07032,0,0,1,176,224ZM82.86621,40.33105A40.01746,40.01746,0,0,0,48,80,128.1454,128.1454,0,0,0,176,208a40.04283,40.04283,0,0,0,39.68262-34.92578L168.832,153.06055l-25.03515,16.69433a15.98041,15.98041,0,0,1-15.74512,1.14063,92.59535,92.59535,0,0,1-42.76367-42.56934,15.993,15.993,0,0,1,1.03222-15.69824l16.63574-25.419Zm52.1416,116.15625h0Z"/></svg>
+                    <p class="phone-number--text">02838973628</p>
+                  </button>
+                  
+                  <div class="distance-hospital">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="distance-hospital--icon" fill="#ef9834" id="Flat" viewBox="0 0 256 256">
+                      <path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/>
+                    </svg>
+                    <p class="distance-hospital--text">5km</p>
+                  </div>
+
+                  <div class="ambulance-status">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill="#1DD75B" id="Flat" viewBox="0 0 256 256">
+                      <path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/>
+                    </svg>
+                    <p class="ambulance-status--text">Còn xe</p>
+                  </div>
+
+                  <div class="hospital-ratings">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="hospital-ratings--icon" fill="#FFDC00" id="Flat" viewBox="0 0 256 256">
+                      <path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/>
+                    </svg>
+                    <p class="hospital-ratings--text">Rank S</p>
+                  </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
+
+      
 
     </div>
     <div class="map-container">

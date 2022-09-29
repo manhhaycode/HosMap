@@ -12,3 +12,7 @@ html{
     box-sizing: border-box;
     font-family: "Roboto",sans-serif;
 }
+
+input::-webkit-input-placeholder{
+    color: #3E8CFFFF;
+}

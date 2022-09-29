@@ -2,7 +2,8 @@
 #header{
     font-size: 14px;
     height: 55px;
-    background: linear-gradient(269.93deg,#10af7e,rgba(0,219,126,0)),#10af7e;
+    background: #84CCFF52;
+    box-shadow: 0px 2px 5px #171a1f, 0px 0px 2px #171a1f;
     color: #000;
 }
 #nav{
@@ -13,12 +14,25 @@
     justify-content: space-between;
     align-items: center;
 }
-#nav .container_nav--logo-img{
+
+#nav .nav--logo_img{
+    height: 40px;
+    width: 40px;
+    margin: 0px 10px 0 10px;
+}
+
+#nav .nav--logo_text{
+    color: #1941B8FF;
+    font-family: Poppins;
+    font-size: 28px;
+    font-weight: bold;
+}
+#nav .container_nav--logo{
     height: 55px;
+    display: flex;
+    align-items: center;
 }
-#nav .img_logo{
-    padding: 0 17px;
-}
+
 
 #nav .container_nav-function{
     display: flex;
@@ -71,7 +85,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+    background: #3E8CFFFF;
     height: 30px;
     width: auto;
     border-radius: 7px;
@@ -82,10 +96,11 @@
     border: none;
     outline: none;
     box-shadow: none;
+    color: #fff;
 }
 
 #nav .region-box--button-icon{
-    color: #00897b;
+    color: #fff;
     margin-right: 7px;
     font-size: 16px;
 }
@@ -185,8 +200,8 @@
 
 .container-tab-funtion-map--header_search.active,
 .container-tab-funtion-map--header_navigate.active{
-    color: #00897b !important;
-    fill: #00897b !important;
+    color: #3E8CFFFF !important;
+    fill: #3E8CFFFF !important;
     font-weight: 500 !important;
 }
 
@@ -205,7 +220,7 @@
     left: 0px;
     position: absolute;
     bottom: 0px;
-    background-color: #00897b;
+    background-color: #3E8CFFFF;
     height: 2px;
     transition: 500ms cubic-bezier(0.35, 0, 0.25, 1);
 }
@@ -219,12 +234,102 @@
     height: 42px;
     border-radius: 7px;
     color: #8b8b8b;
-    background-color: #f7f7f7;
+    background: #F0F6FFFF;
     border: none;
     outline: none;
     padding: 0 10px 0 15px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 15px;
+}
+
+#content .tab-funtion-map--controls__hospitals-list{
+    margin-top: 17px;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+
+#content .tab-funtion-map--controls__hospital-container{
+    padding: 15px;
+    display: flex;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    flex-direction: column;
+    margin-bottom: 17px;
+}
+
+#content .tab-funtion-map--controls__hospital-name-address{
+    display: flex;
+}
+
+#content .tab-funtion-map--controls__hospitals-list .hospital-name-address--icon{
+    margin-right: 15px;
+}
+
+#content .tab-funtion-map--controls__hospitals-list .hospital-name-address--icon__img{
+    height: 30px;
+    width: 30px;
+}
+
+#content .tab-funtion-map--controls__hospital-name-address .hospital--name{
+    font-size: 17px;
+    font-weight: 500;
+    color: #4069E5FF;
+}
+
+#content .tab-funtion-map--controls__hospital-name-address .hospital--address{
+    font-size: 13px;
+    margin: 6px 0px 8px 0;
+}
+
+#content .tab-funtion-map--controls__hospital-container .tab-funtion-map--controls__hospital-info{
+    display: flex;
+    align-items: center;
+}
+
+#content .tab-funtion-map--controls__hospital-info .phone-number{
+    border: none;
+    border-radius: 14px;
+    color: #4069E5FF;
+    background: #EDF0F2;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    display: flex;
+    align-items: center;
+    height: 28px;
+}
+
+#content .tab-funtion-map--controls__hospital-info .phone-number--icon{
+    height: 16px;
+    width: 16px;
+    margin-left: 5px;
+}
+
+#content .tab-funtion-map--controls__hospital-info .phone-number--text{
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 13px;
+    font-family: "Roboto",sans-serif;
+}
+
+#content .tab-funtion-map--controls__hospital-info .hospital-ratings,
+#content .tab-funtion-map--controls__hospital-info .ambulance-status,
+#content .tab-funtion-map--controls__hospital-info .distance-hospital{
+    display: flex;
+}
+
+#content .tab-funtion-map--controls__hospital-info .hospital-ratings--icon,
+#content .tab-funtion-map--controls__hospital-info .ambulance-status--icon,
+#content .tab-funtion-map--controls__hospital-info .distance-hospital--icon{
+    width: 16px;
+    height: 16px;
+    margin:0 6px 0 10px;
+}
+
+#content .tab-funtion-map--controls__hospital-info .hospital-ratings--text,
+#content .tab-funtion-map--controls__hospital-info .ambulance-status--text,
+#content .tab-funtion-map--controls__hospital-info .distance-hospital--text{
+    font-size: 13px;
+    font-family: "Roboto",sans-serif;
 }
 
 #footer{
