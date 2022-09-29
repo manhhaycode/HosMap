@@ -85,7 +85,7 @@ function myMap() {
         },
         {
             "featureType": "transit.station.bus",
-            "elementType": "icon",
+            "elementType": "all",
             "stylers": [
                 {
                     "visibility": "off"
