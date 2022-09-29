@@ -11,5 +11,9 @@ function slideLeft(e) {
 	headerSearch.classList.add('active');
 }
 
+function loadDefault(e){
+    headerSearch.classList.add('active');
+}
 headerSearch.addEventListener('click', slideLeft);
 headerNavigate.addEventListener('click', slideRight);
+addEventListener("load", loadDefault);

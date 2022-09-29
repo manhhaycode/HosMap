@@ -149,40 +149,47 @@
     cursor: pointer;
     justify-content: center;
     border-bottom: 1px solid #ccc;
+    color: #333;
+    font-weight: 400;
+    fill: #777;
 }
+
 #content .tab-funtion-map--header_navigate-icon,
 #content .tab-funtion-map--header_search-icon{
     display: flex;    
 }
 
 #svgSearchPath1{
-    fill: #00897b;
-    color: #00897b;
+    fill: inherit;
 }
 
-#svgSearchPath1{
-    fill: #00897b;
-    color: #00897b;
+#svgSearchPath2{
+    fill: inherit;
 }
 
 #svgMapPath1{
-    fill: #00897b;
-    color: #00897b;
+    fill: inherit;
 }
 
 #svgMapPath2 {
-    fill: #00897b;
-    color: #00897b;
+    fill: inherit;
 }
 
 #content .tab-funtion-map--header_navigate-texture,
 #content .tab-funtion-map--header_search-texture{
-    color: #00897b;
     font-family: Roboto,sans-serif;
-    font-weight: 500;
+    font-weight: inherit;
     font-size: 17px;
     text-transform: uppercase;
 }
+
+.container-tab-funtion-map--header_search.active,
+.container-tab-funtion-map--header_navigate.active{
+    color: #00897b !important;
+    fill: #00897b !important;
+    font-weight: 500 !important;
+}
+
 
 .container-tab-funtion-map--header_search.active ~ .indicator{
     left: 0px !important
