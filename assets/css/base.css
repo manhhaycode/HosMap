@@ -13,6 +13,6 @@ html{
     font-family: "Roboto",sans-serif;
 }
 
-input::-webkit-input-placeholder{
+.find-hos-input::-webkit-input-placeholder{
     color: #3E8CFFFF;
 }
