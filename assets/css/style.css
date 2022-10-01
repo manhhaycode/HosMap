@@ -14,6 +14,10 @@
     left: 25px;
 }
 
+#content .map-search-location--icon-container{
+    display: flex;
+}
+
 #content .map-search-location{
     display: flex;
     align-items: center;
@@ -31,10 +35,7 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
-#content .map-search-location--icon-img{
-    border: 1px solid #dee2e6;
-    border-radius: 7px 0 0 7px;
-}
+
 
 #content .map-search-location--input{
     padding: 8px 12px 8px 8px;
