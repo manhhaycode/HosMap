@@ -1,21 +1,5 @@
 function myMap() {
     
-    const autocomplete = new google.maps.places.Autocomplete(document.querySelector('.map-search-location--input'),{
-        fields: ["formatted_address", "geometry", "name"],
-        types: [],
-      });
-
-    autocomplete.addListener("place_changed", () => {
-        const place = autocomplete.getPlace();
-        if(place.geometry.viewport){
-            var markerHome =new google.maps.Marker({
-                position: { lat: place.geometry.location.lat(), lng: place.geometry.location.lng()},
-                icon: image,
-                class:"FPTU",
-            });
-        }
-    });
-   
     const image = {
         url: "./assets/img/FPTU.png",
         scaledSize: new google.maps.Size(75, 33),
@@ -25,16 +9,16 @@ function myMap() {
     // 10.841496200443682, 106.8098263453939 FPT
     // 10.7502687, 106.6246588
     var mapProp= {
-    center:new google.maps.LatLng(10.841496200443682, 106.8098263453939),
-    zoom:15,
-    disableDefaultUI: true,
-    // mapId: '4efdfc21c30d0be0',
-    options: {
-        gestureHandling: 'greedy'
-    },
-    mapTypeControlOptions: {
-        mapTypeIds: [google.maps.MapTypeId.TERRAIN, 'custom_map_style']
-    }
+        center:new google.maps.LatLng(10.841496200443682, 106.8098263453939),
+        zoom:15,
+        disableDefaultUI: true,
+        // mapId: '4efdfc21c30d0be0',
+        options: {
+            gestureHandling: 'greedy'
+        },
+        mapTypeControlOptions: {
+            mapTypeIds: [google.maps.MapTypeId.TERRAIN, 'custom_map_style']
+        }
     };
     var styles = 
     [
@@ -195,5 +179,23 @@ function myMap() {
             marker.setMap(null);
         }
     });
-
+    const autocomplete = new google.maps.places.Autocomplete(document.querySelector('.map-search-location--input'),{
+        fields: ["formatted_address", "geometry", "name"],
+        types: [],
+      });
+    autocomplete.bindTo('bounds', map);
+    autocomplete.addListener('place_changed', function () {
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            window.alert("Vui lòng chọn đầy đủ địa chỉ");
+            return;
+        }
+        if (place.geometry.viewport) {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);  // Why 17? Because it looks good.
+            
+        }
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
+    });
 }

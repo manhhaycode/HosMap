@@ -25,7 +25,7 @@
 
 #content .map-search-location--icon{
     display: flex;
-    padding: 6px 12px;
+    padding: 11px 12px;
     align-items: center;
     background-color: #fff;
     border-top: 1px solid #dee2e6!important;
@@ -38,7 +38,7 @@
 
 
 #content .map-search-location--input{
-    padding: 8px 12px 8px 8px;
+    padding: 13px 12px 13px 8px;
     border: none;
     outline: none;
     border-radius: 0 7px 7px 0;
