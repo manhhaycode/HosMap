@@ -45,3 +45,10 @@ export const getHospitals = async (filter) => {
   }
   return hospitalList;
 };
+
+export const getMajors = async () => {
+  const majorCollection = collection(db, "major");
+  const majorSnapshot = await getDocs(majorCollection);
+  const majorList = majorSnapshot.docs.map((doc) => doc.data());
+  return majorList;
+};
