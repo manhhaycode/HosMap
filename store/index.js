@@ -23,13 +23,13 @@ export { app, db };
 
 // Test
 
-getHospitals({
-  city: "hcm",
-  major: 0,
-}).then((res) => {
-  console.log(res);
-});
+// getHospitals({
+//   city: "hcm",
+//   major: 0,
+// }).then((res) => {
+//   console.log(res);
+// });
 
-getMajors().then((res) => {
-  console.log(res);
-});
+// getMajors().then((res) => {
+//   console.log(res);
+// });
