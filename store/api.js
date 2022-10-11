@@ -1,6 +1,8 @@
 import {
   collection,
   getDocs,
+  getDoc,
+  doc,
 } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-firestore.js";
 
 import { db } from "./index.js";
@@ -9,7 +11,7 @@ import { db } from "./index.js";
 /**
  * Ho Chi Minh -> "hcm"
  * Long An -> "la"
- * @param {*} filter
+ * @param {*} filter {city, major, searchKeyword}
  * @returns list hospital
  */
 export const getHospitals = async (filter) => {
@@ -42,8 +44,32 @@ export const getHospitals = async (filter) => {
         (hospital) => hospital.major.id === filter.major
       );
     }
+    if (filter.searchKeyword) {
+      hospitalList = hospitalList.filter((hospital) =>
+        hospital.name.toLowerCase().includes(filter.searchKeyword.toLowerCase())
+      );
+    }
   }
   return hospitalList;
+};
+
+/**
+ *
+ * @param {*} id
+ * @returns hospital
+ */
+export const getHospitalById = async (id) => {
+  const hospitalDoc = doc(db, "hospital", id);
+  const hospitalSnapshot = await getDoc(hospitalDoc);
+  if (hospitalSnapshot.exists()) {
+    const data = hospitalSnapshot.data();
+    return {
+      ...data,
+      id,
+    };
+  } else {
+    Promise.reject("Not found");
+  }
 };
 
 export const getMajors = async () => {
