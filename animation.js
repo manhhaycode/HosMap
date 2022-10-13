@@ -5,6 +5,8 @@ const mapControlNavigate = document.querySelector('.tab-funtion-map--controls__n
 const directSearch = document.querySelector('.direct-search');
 const mapSearchLocationContainer = document.querySelector('.map-search-location--icon-container');
 const mapSearchLocationInput = document.getElementById("input-1");
+const findHosInput = document.querySelector('.find-hos-input');
+mapControlNavigate.style.display = "none";
 
 function slideRight(e) {
 	headerSearch.classList.remove('active');
