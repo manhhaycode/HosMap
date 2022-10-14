@@ -60,7 +60,7 @@ function myMap() {
             locationlatLng = `${place.geometry.location.lat()}, ${place.geometry.location.lng()}`;
             getHospitalList("");
             map.setCenter(place.geometry.location);
-            map.setZoom(17);  // Why 17? Because it looks good.
+            // Why 17? Because it looks good.
         }
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
