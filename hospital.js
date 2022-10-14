@@ -1,7 +1,7 @@
 import { getHospitals } from "./store/api.js";
 const hospitalList = document.querySelector('.tab-funtion-map--controls__hospitals-list');
-const findHosInput = document.querySelector('.find-hos-input');
-const getHospitalList = async (keyword) => {
+export const findHosInput = document.querySelector('.find-hos-input');
+export const getHospitalList = async (keyword) => {
 const res = await getHospitals({
     city: "hcm",
     major: 0,
@@ -28,7 +28,7 @@ const distance = (coordinates1, coordinates2) =>{
 
 const sortByDistance = (res) => {
   let a = res.map((hos) =>{
-    hos.distance = distance("10.841317264569343, 106.80994737008923", hos.coordinate);
+    hos.distance = distance(window.locationlatLng, hos.coordinate);
     return hos;
   });
   let len = a.length;

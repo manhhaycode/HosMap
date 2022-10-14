@@ -1,3 +1,4 @@
+window.locationlatLng = "10.841317264569343, 106.80994737008923";
 function myMap() {
     const image = {
         url: "./assets/img/FPTU.png",
@@ -190,11 +191,13 @@ function myMap() {
             return;
         }
         if (place.geometry.viewport) {
+            window.locationlatLng = `${place.geometry.location.lat()}, ${place.geometry.location.lng()}`;
             map.setCenter(place.geometry.location);
             map.setZoom(17);  // Why 17? Because it looks good.
-            
         }
         marker.setPosition(place.geometry.location);
         marker.setVisible(true);
     });
 }
+
+window.myMap = myMap;
