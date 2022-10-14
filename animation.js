@@ -7,6 +7,7 @@ const mapSearchLocationContainer = document.querySelector('.map-search-location-
 const mapSearchLocationInput = document.getElementById("input-1");
 const findHosInput = document.querySelector('.find-hos-input');
 mapControlNavigate.style.display = "none";
+headerSearch.classList.add('active');
 
 function slideRight(e) {
 	headerSearch.classList.remove('active');
@@ -22,14 +23,9 @@ function slideLeft(e) {
 	mapControlNavigate.style.display = "none";
 }
 
-function loadDefault(e){
-    headerSearch.classList.add('active');
-}
-
 mapSearchLocationContainer.addEventListener('click', function(e){
 	mapSearchLocationInput.focus();
 })
 headerSearch.addEventListener('click', slideLeft);
 headerNavigate.addEventListener('click', slideRight);
 directSearch.addEventListener('click', slideLeft)
-addEventListener("load", loadDefault);

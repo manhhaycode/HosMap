@@ -5,7 +5,9 @@
     background: #84CCFF52;
     color: #000;
     position: relative;
+    display: none;
 }
+
 
 #content .map-search-location-container{
     position: absolute;
@@ -165,10 +167,10 @@
 
 #content{
     position: relative;
-    display: flex;
     width: 100vw;
     height: calc(100vh - 55px);
     overflow: hidden;
+    display: none;
 }
 
 #content .map-container{

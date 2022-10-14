@@ -1,5 +1,4 @@
 function myMap() {
-    
     const image = {
         url: "./assets/img/FPTU.png",
         scaledSize: new google.maps.Size(75, 33),
@@ -163,7 +162,7 @@ function myMap() {
         name: "Hospital Map FPTU"
     });
 
-    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var map =  new google.maps.Map(document.getElementById("googleMap"),mapProp);
     map.mapTypes.set('custom_map_style', styledMap);
     map.setMapTypeId('custom_map_style');
     var marker=new google.maps.Marker({
