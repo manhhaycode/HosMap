@@ -1,4 +1,5 @@
 import { getHospitals } from "./store/api.js";
+import { locationlatLng } from "./main.js";
 const hospitalList = document.querySelector('.tab-funtion-map--controls__hospitals-list');
 export const findHosInput = document.querySelector('.find-hos-input');
 export const getHospitalList = async (keyword) => {
@@ -28,7 +29,7 @@ const distance = (coordinates1, coordinates2) =>{
 
 const sortByDistance = (res) => {
   let a = res.map((hos) =>{
-    hos.distance = distance(window.locationlatLng, hos.coordinate);
+    hos.distance = distance(locationlatLng, hos.coordinate);
     return hos;
   });
   let len = a.length;
