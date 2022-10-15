@@ -32,7 +32,6 @@ const sortByDistance = (res) => {
     hos.distance = distance(locationlatLng, hos.coordinate);
     return hos;
   });
-  console.log(a);
   let len = a.length;
   for(let i = 0; i < len - 1; i++) {
     for(let j = 0; j < len-i-1; j++) {
@@ -43,17 +42,16 @@ const sortByDistance = (res) => {
       }
     }
   }
-  console.log(a);
   return a;
 }
 
-addEventListener("load", async()=>{
+export const loadingPage = async () =>{
   await getHospitalList("");
-  document.getElementsByTagName("body")[0].style.background = "none";
   document.querySelector('.load-page').remove();
+  document.getElementsByTagName("body")[0].style.background = "none";
   document.getElementById('header').style.display = "block";
   document.getElementById('content').style.display = "flex";
-})
+}
 
 findHosInput.addEventListener("input", ()=>{
   getHospitalList(findHosInput.value)

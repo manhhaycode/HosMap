@@ -1,6 +1,7 @@
 import { 
     findHosInput,
-    getHospitalList 
+    getHospitalList,
+    loadingPage 
 } from "./hospital.js";
 import {styles} from "./mapStyle.js";
 export let locationlatLng = "10.841317264569343, 106.80994737008923";
@@ -31,6 +32,13 @@ function myMap() {
     var map =  new google.maps.Map(document.getElementById("googleMap"),mapProp);
     map.mapTypes.set('custom_map_style', styledMap);
     map.setMapTypeId('custom_map_style');
+    let countIdle = 0;
+    map.addListener('idle', ()=>{
+        countIdle++;
+        if(countIdle ==1){
+            loadingPage();
+        }
+    })
     var marker=new google.maps.Marker({
         position: { lat: 10.84198137186611, lng: 106.81052035383871 },
         icon: image,
