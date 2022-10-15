@@ -9,14 +9,14 @@ const findHosInput = document.querySelector('.find-hos-input');
 mapControlNavigate.style.display = "none";
 headerSearch.classList.add('active');
 
-function slideRight(e) {
+export function slideRight(e) {
 	headerSearch.classList.remove('active');
 	headerNavigate.classList.add('active');
 	mapControlSearch.style.display = "none";
 	mapControlNavigate.style.display = "block";
 }
 
-function slideLeft(e) {
+export function slideLeft(e) {
 	headerNavigate.classList.remove('active');
 	headerSearch.classList.add('active');
 	mapControlSearch.style.display = "block";
