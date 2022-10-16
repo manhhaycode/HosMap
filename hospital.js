@@ -3,13 +3,18 @@ import { locationlatLng } from "./main.js";
 import { slideRight } from "./animation.js";
 const hospitalList = document.querySelector('.tab-funtion-map--controls__hospitals-list');
 export const findHosInput = document.querySelector('.find-hos-input');
+const loadingHospitalList = document.createElement("div");
+loadingHospitalList.classList.add("sk-circle");
+loadingHospitalList.innerHTML = `<div class="sk-circle1 sk-child"></div><div class="sk-circle2 sk-child"></div><div class="sk-circle3 sk-child"></div><div class="sk-circle4 sk-child"></div><div class="sk-circle5 sk-child"></div><div class="sk-circle6 sk-child"></div><div class="sk-circle7 sk-child"></div><div class="sk-circle8 sk-child"></div><div class="sk-circle9 sk-child"></div><div class="sk-circle10 sk-child"></div><div class="sk-circle11 sk-child"></div><div class="sk-circle12 sk-child"></div>`
 export const getHospitalList = async (keyword) => {
+  hospitalList.innerHTML = ``;
+  hospitalList.style.background = "#F6F6F6";
+  hospitalList.appendChild(loadingHospitalList);
 const res = await getHospitals({
     city: "hcm",
     major: 0,
     searchKeyword: keyword,
   });
-  hospitalList.innerHTML = ``;
   let resSorted = sortByDistance(res);
   resSorted.map((hos) => {
     const boxHospital = document.createElement("div");
@@ -18,7 +23,8 @@ const res = await getHospitals({
     boxHospital.addEventListener("click", slideRight);
     hospitalList.appendChild(boxHospital);
   });
-  
+  loadingHospitalList.remove();
+  hospitalList.style.background = "none";
   return resSorted;
 }
 
@@ -54,7 +60,6 @@ const sortByDistance = (res) => {
 }
 
 export const loadingPage = async () =>{
-  hospitalList.insertAdjacentHTML('beforeend', `<div class="tab-funtion-map--controls__hospital-container"></div>`)
   await getHospitalList("");
   document.querySelector('.load-page').remove();
   document.getElementsByTagName("body")[0].style.background = "none";

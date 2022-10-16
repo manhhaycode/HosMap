@@ -8,6 +8,13 @@ const mapSearchLocationInput = document.getElementById("input-1");
 const findHosInput = document.querySelector('.find-hos-input');
 mapControlNavigate.style.display = "none";
 headerSearch.classList.add('active');
+const imgLoadPage = document.createElement('img');
+imgLoadPage.classList.add('img-load-page');
+imgLoadPage.src = "./assets/img/Pageloading.png";
+document.querySelector(".load-page").insertBefore(imgLoadPage, document.querySelector(".load-page").firstChild);
+document.querySelector('.img-load-page').addEventListener('load',() =>{
+	document.querySelector('.lds-ring').style.display = "block";
+})
 
 export function slideRight(e) {
 	headerSearch.classList.remove('active');
