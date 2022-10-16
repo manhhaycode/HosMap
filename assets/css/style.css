@@ -403,6 +403,45 @@
     flex-direction: column;
 }
 
+#content .hospital-info .hospital-info--img{
+    max-width: 420px;
+}
+
+#content .hospital-info .hospital-info--name{
+    font-size: 21px;
+    font-weight: bold;
+    color: #4069E5FF;
+    margin: 20px 0;
+}
+
+#content .hospital-info .ambulance-status,
+#content .hospital-info .hospital-info--specialist,
+#content .hospital-info .hospital-info--phone,
+#content .hospital-info .hospital-info--location{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+#content .hospital-info .ambulance-status--icon,
+#content .hospital-info .hospital-info--specialist_icon,
+#content .hospital-info .hospital-info--phone_icon,
+#content .hospital-info .hospital-info--location_icon{
+    width: 22px;
+    height: 22px;
+    align-self: stretch;
+}
+#content .hospital-info .ambulance-status--text,
+#content .hospital-info .hospital-info--specialist_name,
+#content .hospital-info .hospital-info--phone_number,
+#content .hospital-info .hospital-info--location_address{
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+#content .hospital-info .direct-google-map a{
+    text-decoration: none;
+}
+
 #content .tab-funtion-map--controls__navigate-container.error .tab-funtion-map--controls__navigate-error-message{
     font-weight: bold;
     font-size: 14px;
@@ -411,11 +450,14 @@
     text-align: center;
 }
 
+#content .hospital-info .hospital-info__navigate-direction,
 #content .tab-funtion-map--controls__navigate-direction{
     display: flex;
     justify-content: space-between;
 }
 
+#content .hospital-info__navigate-direction .direct-search,
+#content .hospital-info__navigate-direction .direct-google-map,
 #content .tab-funtion-map--controls__navigate-direction .direct-search,
 #content .tab-funtion-map--controls__navigate-direction .guide-button{
     margin-top: 30px;

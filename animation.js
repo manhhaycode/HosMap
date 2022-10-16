@@ -5,7 +5,6 @@ const mapControlNavigate = document.querySelector('.tab-funtion-map--controls__n
 const directSearch = document.querySelector('.direct-search');
 const mapSearchLocationContainer = document.querySelector('.map-search-location--icon-container');
 const mapSearchLocationInput = document.getElementById("input-1");
-const findHosInput = document.querySelector('.find-hos-input');
 mapControlNavigate.style.display = "none";
 headerSearch.classList.add('active');
 const imgLoadPage = document.createElement('img');
@@ -15,12 +14,19 @@ document.querySelector(".load-page").insertBefore(imgLoadPage, document.querySel
 document.querySelector('.img-load-page').addEventListener('load',() =>{
 	document.querySelector('.lds-ring').style.display = "block";
 })
-
 export function slideRight(e) {
 	headerSearch.classList.remove('active');
 	headerNavigate.classList.add('active');
 	mapControlSearch.style.display = "none";
 	mapControlNavigate.style.display = "block";
+}
+
+export function hospitalInfo(e) {
+	mapControlNavigate.style.display = "block";
+	headerSearch.classList.remove('active');
+	headerNavigate.classList.add('active');
+	mapControlSearch.style.display = "none";
+	document.querySelector('.tab-funtion-map--controls__navigate-container.error').style.display = "none";
 }
 
 export function slideLeft(e) {
@@ -35,4 +41,4 @@ mapSearchLocationContainer.addEventListener('click', function(e){
 })
 headerSearch.addEventListener('click', slideLeft);
 headerNavigate.addEventListener('click', slideRight);
-directSearch.addEventListener('click', slideLeft)
+directSearch.addEventListener('click', slideLeft);
