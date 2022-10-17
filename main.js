@@ -1,8 +1,10 @@
 import { 
     findHosInput,
     getHospitalList,
-    loadingPage 
+    loadingPage,
+    addressInput 
 } from "./hospital.js";
+
 import {styles} from "./mapStyle.js";
 export let locationlatLng = "10.841317264569343, 106.80994737008923";
 function myMap() {
@@ -65,9 +67,10 @@ function myMap() {
         }
         if (place.geometry.viewport) {
             findHosInput.value ="";
-            locationlatLng = `${place.geometry.location.lat()}, ${place.geometry.location.lng()}`;
-            getHospitalList("");
+            locationlatLng = `${place.geometry.location.lat()}, ${place.geometry.location.lng()}`;          
+            addressInput();  
             map.setCenter(place.geometry.location);
+            map.setZoom(17);
             // Why 17? Because it looks good.
         }
         marker.setPosition(place.geometry.location);
