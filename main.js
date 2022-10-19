@@ -6,31 +6,30 @@ import {
 } from "./hospital.js";
 function getLocation(map, marker) {
     var findLocation =  document.querySelector('.find-location-button');
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) =>{
-        if(findLocation.classList.length > 1){
-            if(document.querySelector('.find-location-button.active-move') != null){
-                findLocation.classList.remove("active-move");
-                document.querySelector('.find-location-button').classList.add('active'); 
-            } else{
-                findLocation.classList.remove('active');
-            }
+    if(findLocation.classList.length > 1){
+        if(document.querySelector('.find-location-button.active-move') != null){
+            findLocation.classList.remove("active-move");
+            document.querySelector('.find-location-button').classList.add('active'); 
         } else{
-            findLocation.classList.add("active");
-            locationlatLng = `${position.coords.latitude}, ${position.coords.longitude}`;  
-            getHospitalList("");
-        } 
-
-        console.log("active")
-        let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        marker.setMap(map);
-        marker.setPosition(latLng)
-        map.setCenter(latLng);
-        map.setZoom(17);
-        console.log("done")
-      });
-    } else {
-      console.log("Geolocation is not supported by this browser.");
+            findLocation.classList.remove('active');
+        }
+    } else{
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) =>{
+                findLocation.classList.add("active");
+                locationlatLng = `${position.coords.latitude}, ${position.coords.longitude}`;  
+                getHospitalList("")
+                console.log("active")
+                let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                marker.setMap(map);
+                marker.setPosition(latLng)
+                map.setCenter(latLng);
+                map.setZoom(17);
+                console.log("done")
+            });
+        } else {
+          console.log("Geolocation is not supported by this browser.");
+        }
     }
 }
 
