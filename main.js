@@ -4,12 +4,25 @@ import {
     loadingPage,
     addressInput 
 } from "./hospital.js";
-function getLocation(map, maker) {
+function getLocation(map, marker) {
+    var findLocation =  document.querySelector('.find-location-button');
     if (navigator.geolocation) {
-     var id = navigator.geolocation.watchPosition((position) =>{
+        navigator.geolocation.getCurrentPosition((position) =>{
+        if(findLocation.classList.length > 1){
+            if(document.querySelector('.find-location-button.active-move') != null){
+                findLocation.classList.remove("active-move");
+                document.querySelector('.find-location-button').classList.add('active'); 
+            } else{
+                findLocation.classList.remove('active');
+            }
+        } else{
+            findLocation.classList.add("active");
+        } 
+
+        console.log("active")
         let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        maker.setMap(map);
-        maker.setPosition(latLng)
+        marker.setMap(map);
+        marker.setPosition(latLng)
         map.setCenter(latLng);
         map.setZoom(17);
         console.log("done")
@@ -17,12 +30,13 @@ function getLocation(map, maker) {
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
-    return id;
 }
 
 import {styles} from "./mapStyle.js";
 export let locationlatLng = "10.841317264569343, 106.80994737008923";
-function myMap() {    
+function myMap() {
+    var activeLocation;
+    var moveActiveLocation;    
     const image = {
         url: "./assets/img/FPTU.png",
         scaledSize: new google.maps.Size(75, 33),
@@ -54,11 +68,26 @@ function myMap() {
         class:"FPTU",
         draggable:true,
     });
-    let idGetLocation = getLocation(map, marker);
+    document.querySelector(".find-location-button").addEventListener('click', () =>{
+        getLocation(map, marker);
+    });
     marker.addListener('dragstart', () =>{
-        navigator.geolocation.clearWatch(idGetLocation);
+        if((activeLocation = document.querySelector('.find-location-button.active')) != null){
+            activeLocation.classList.remove('active');
+        }
+        if((moveActiveLocation = document.querySelector('.find-location-button.active-move')) != null){
+            moveActiveLocation.classList.remove('active-move');
+        }
+    })
+
+    map.addListener('dragstart', () =>{
+        if((activeLocation = document.querySelector('.find-location-button.active')) != null){
+            activeLocation.classList.remove("active");
+            document.querySelector('.find-location-button').classList.add("active-move");
+        }
     })
     marker.addListener('dragend', (position) =>{
+        locationlatLng = `${marker.getPosition().lat()}, ${marker.getPosition().lng()}`;  
         getHospitalList("");
     })
     let countIdle = 0;
@@ -83,7 +112,6 @@ function myMap() {
       });
     autocomplete.bindTo('bounds', map);
     autocomplete.addListener('place_changed', function () {
-        navigator.geolocation.clearWatch(idGetLocation);
         var place = autocomplete.getPlace();
         if (!place.geometry) {
             window.alert("Vui lòng chọn đầy đủ địa chỉ");
