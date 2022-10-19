@@ -17,6 +17,8 @@ function getLocation(map, marker) {
             }
         } else{
             findLocation.classList.add("active");
+            locationlatLng = `${position.coords.latitude}, ${position.coords.longitude}`;  
+            getHospitalList("");
         } 
 
         console.log("active")
