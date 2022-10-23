@@ -74,7 +74,7 @@
 }
 
 #content .map-container .map-type{
-    background-image: url(/assets/img/vetinh.png);
+    background-image: url(../img/vetinh.png);
     position: absolute;
     border: none;
     background-color: #fff;
@@ -88,7 +88,7 @@
 }
 
 #content .map-container .map-type.graph{
-    background-image: url(/assets/img/bando.png);
+    background-image: url(../img/bando.png);
     height: 82px;
     width: 76px;
 }
