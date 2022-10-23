@@ -9,7 +9,8 @@ function getLocation(map, marker) {
     if(findLocation.classList.length > 1){
         if(document.querySelector('.find-location-button.active-move') != null){
             findLocation.classList.remove("active-move");
-            document.querySelector('.find-location-button').classList.add('active'); 
+            document.querySelector('.find-location-button').classList.add('active');
+            map.panTo(marker.getPosition()); 
         } else{
             findLocation.classList.remove('active');
         }
@@ -48,12 +49,13 @@ function myMap() {
         center:new google.maps.LatLng(10.841496200443682, 106.8098263453939),
         zoom:15,
         disableDefaultUI: true,
+        // mapTypeId: "hybrid",
         // mapId: '4efdfc21c30d0be0',
         options: {
             gestureHandling: 'greedy'
         },
         mapTypeControlOptions: {
-            mapTypeIds: [google.maps.MapTypeId.TERRAIN, 'custom_map_style']
+            mapTypeIds: [google.maps.MapTypeId.TERRAIN, 'custom_map_style'],
         }
     };
 
@@ -61,9 +63,19 @@ function myMap() {
         name: "Hospital Map FPTU"
     });
 
-    var map =  new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    window.map =  new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    console.log(map)
     map.mapTypes.set('custom_map_style', styledMap);
     map.setMapTypeId('custom_map_style');
+    document.querySelector('.map-type').addEventListener("click", () =>{
+        if(document.querySelector('.map-type.graph') != null){
+            map.setMapTypeId('custom_map_style');
+            document.querySelector('.map-type').classList.remove("graph");
+        } else{
+            map.setMapTypeId("hybrid");
+            document.querySelector('.map-type').classList.add("graph");
+        }
+    })
     var marker=new google.maps.Marker({
         icon: image,
         class:"FPTU",
@@ -113,6 +125,12 @@ function myMap() {
       });
     autocomplete.bindTo('bounds', map);
     autocomplete.addListener('place_changed', function () {
+        if((activeLocation = document.querySelector('.find-location-button.active')) != null){
+            activeLocation.classList.remove('active');
+        }
+        if((moveActiveLocation = document.querySelector('.find-location-button.active-move')) != null){
+            moveActiveLocation.classList.remove('active-move');
+        }
         var place = autocomplete.getPlace();
         if (!place.geometry) {
             window.alert("Vui lòng chọn đầy đủ địa chỉ");

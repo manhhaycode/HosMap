@@ -73,7 +73,25 @@
     width: 400px;
 }
 
+#content .map-container .map-type{
+    background-image: url("/assets/img/vetinh.png");
+    position: absolute;
+    border: none;
+    background-color: #fff;
+    bottom: 30px;
+    z-index: 999999;
+    height: 75px;
+    width: 77px;
+    left: 10px;
+    cursor: pointer;
+    border-radius: 7px;
+}
 
+#content .map-container .map-type.graph{
+    background-image: url("/assets/img/bando.png");
+    height: 82px;
+    width: 76px;
+}
 
 #nav{
 
