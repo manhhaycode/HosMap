@@ -5,6 +5,7 @@ import {
     addressInput 
 } from "./hospital.js";
 function getLocation(map, marker) {
+    document.querySelector('.map-search-location--input').value = "";
     var findLocation =  document.querySelector('.find-location-button');
     if(findLocation.classList.length > 1){
         if(document.querySelector('.find-location-button.active-move') != null){
@@ -15,18 +16,17 @@ function getLocation(map, marker) {
             findLocation.classList.remove('active');
         }
     } else{
+        addressInput(); 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) =>{
                 findLocation.classList.add("active");
                 locationlatLng = `${position.coords.latitude}, ${position.coords.longitude}`;  
                 getHospitalList("")
-                console.log("active")
                 let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 marker.setMap(map);
                 marker.setPosition(latLng)
                 map.setCenter(latLng);
                 map.setZoom(17);
-                console.log("done")
             });
         } else {
           console.log("Geolocation is not supported by this browser.");
@@ -38,7 +38,8 @@ import {styles} from "./mapStyle.js";
 export let locationlatLng = "10.841317264569343, 106.80994737008923";
 function myMap() {
     var activeLocation;
-    var moveActiveLocation;    
+    var moveActiveLocation;
+    var placeChanged;    
     const image = {
         url: "./assets/img/FPTU.png",
         scaledSize: new google.maps.Size(75, 33),
