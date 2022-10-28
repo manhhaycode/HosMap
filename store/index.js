@@ -28,12 +28,12 @@ export { app, db };
 
 // Test
 
-addHospital({
-  city: "hcm",
-  name: "Test1",
-}).then((res) => {
-  console.log(res);
-});
+// addHospital({
+//   city: "hcm",
+//   name: "Test1",
+// }).then((res) => {
+//   console.log(res);
+// });
 
 // getHospitals({
 //   city: "hcm",
