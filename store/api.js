@@ -7,6 +7,14 @@ import {
 
 import { db } from "./index.js";
 
+const covertStr = (str) => {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d")
+    .replace(/Đ/g, "D");
+};
+
 // Truyền city vào thì sẽ lọc theo city
 /**
  * Ho Chi Minh -> "hcm"
@@ -45,8 +53,16 @@ export const getHospitals = async (filter) => {
       );
     }
     if (filter.searchKeyword) {
-      hospitalList = hospitalList.filter((hospital) =>
-        hospital.name.toLowerCase().includes(filter.searchKeyword.toLowerCase())
+      hospitalList = hospitalList.filter(
+        (hospital) =>
+          // Search Name
+          covertStr(hospital.name.toLowerCase()).includes(
+            covertStr(filter.searchKeyword.toLowerCase())
+          ) ||
+          // Search Location
+          covertStr(hospital.location.toLowerCase()).includes(
+            covertStr(filter.searchKeyword.toLowerCase())
+          )
       );
     }
   }
