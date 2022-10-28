@@ -37,7 +37,6 @@ export { app, db };
 
 // getHospitals({
 //   city: "hcm",
-//   major: 0,
 //   searchKeyword: "",
 // }).then((res) => {
 //   console.log(res);
