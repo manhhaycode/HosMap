@@ -3,6 +3,7 @@ import {
   getDocs,
   getDoc,
   doc,
+  setDoc,
 } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-firestore.js";
 
 import { db } from "./index.js";
@@ -85,6 +86,31 @@ export const getHospitalById = async (id) => {
     };
   } else {
     Promise.reject("Not found");
+  }
+};
+
+/**
+ *
+ * @param {*} data
+ * data: {
+ *  name,
+ *  location,
+ *  city,
+ *  major,
+ *  image,
+ *  coordinate
+ * }
+ * @returns status "success" || "error"
+ */
+export const addHospital = async (data) => {
+  try {
+    const id = Date.now().toString(16) + Math.random().toString(16);
+
+    await setDoc(doc(db, "hospital", id), data);
+    return "success";
+  } catch (error) {
+    console.log(error);
+    return "error";
   }
 };
 

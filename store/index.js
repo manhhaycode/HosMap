@@ -2,7 +2,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.11.0/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-analytics.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-firestore.js";
 
-import { getHospitals, getMajors, getHospitalById } from "./api.js";
+import {
+  getHospitals,
+  getMajors,
+  getHospitalById,
+  addHospital,
+} from "./api.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB3DEaVU0YbWZI_V3_-CbbFurKhHlsiH30",
@@ -22,6 +27,13 @@ const analytics = getAnalytics(app);
 export { app, db };
 
 // Test
+
+addHospital({
+  city: "hcm",
+  name: "Test1",
+}).then((res) => {
+  console.log(res);
+});
 
 // getHospitals({
 //   city: "hcm",
