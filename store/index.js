@@ -4,7 +4,6 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/9.11.0/firebase
 
 import {
   getHospitals,
-  getMajors,
   getHospitalById,
   addHospital,
 } from "./api.js";

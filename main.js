@@ -20,7 +20,8 @@ function getLocation(map, marker) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) =>{
                 findLocation.classList.add("active");
-                locationlatLng = `${position.coords.latitude}, ${position.coords.longitude}`;  
+                locationlatLng = `${position.coords.latitude}, ${position.coords.longitude}`;
+                console.log(locationlatLng);  
                 getHospitalList("")
                 let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 marker.setMap(map);
