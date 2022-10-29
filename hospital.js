@@ -13,6 +13,7 @@ export const findHosInput = document.querySelector('.find-hos-input');
 const loadingHospitalList = document.createElement("div");
 loadingHospitalList.classList.add("sk-circle");
 loadingHospitalList.innerHTML = `<div class="sk-circle1 sk-child"></div><div class="sk-circle2 sk-child"></div><div class="sk-circle3 sk-child"></div><div class="sk-circle4 sk-child"></div><div class="sk-circle5 sk-child"></div><div class="sk-circle6 sk-child"></div><div class="sk-circle7 sk-child"></div><div class="sk-circle8 sk-child"></div><div class="sk-circle9 sk-child"></div><div class="sk-circle10 sk-child"></div><div class="sk-circle11 sk-child"></div><div class="sk-circle12 sk-child"></div>`
+ 
 export const getHospitalList = async (keyword) => {
   slideLeft();
   hospitalList.innerHTML = ``;
@@ -23,7 +24,8 @@ const res = await getHospitals({
     searchKeyword: keyword,
   });
   let resSorted = sortByDistance(res);
-  resSorted.map((hos) => {
+  hospitalList.innerHTML = ``;
+  resSorted.map((hos, i) => {
     const boxHospital = document.createElement("div");
     boxHospital.classList.add("tab-funtion-map--controls__hospital-container");
     boxHospital.setAttribute("id_hospital", hos.id);
@@ -35,7 +37,7 @@ const res = await getHospitals({
   });
   loadingHospitalList.remove();
   hospitalList.style.background = "none";
-  console.log(resSorted)
+  // console.log(resSorted)
   return resSorted;
 }
 
@@ -96,7 +98,7 @@ export const loadingPage = async () =>{
 }
 
 
-findHosInput.addEventListener("input", ()=>{
+findHosInput.addEventListener("input",()=>{
   getHospitalList(findHosInput.value)
 });
 

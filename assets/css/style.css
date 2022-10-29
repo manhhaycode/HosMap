@@ -224,6 +224,7 @@
 
 #content .container-tab-function-map{
     min-width: 420px;
+    max-width: 420px;
     height: calc(100vh - 55px);
     background-color: #fff;
     position: relative;
