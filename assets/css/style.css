@@ -162,7 +162,7 @@
 
 #nav .spacer{
     width: 0.5px;
-    height: calc(100% - 32px);
+    height: calc(100vh - 32px);
     background-color: #fff;
     margin: 0 26px;
     opacity: .8;
@@ -230,7 +230,7 @@
 #content{
     position: relative;
     width: 100vw;
-    height: calc(100% - 55px);
+    height: calc(100vh - 55px);
     overflow: hidden;
     display: none;
 }
@@ -372,7 +372,7 @@
     scroll-margin-left: 50px;
     padding-right: 5px;
     margin-right: -18px;
-    max-height: calc(100% - 195px);
+    max-height: calc(100vh - 195px);
 }
 
 #content .tab-funtion-map--controls__hospitals-list::-webkit-scrollbar{
