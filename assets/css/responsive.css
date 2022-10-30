@@ -47,9 +47,7 @@
     }
 
     #content .hospital-info .hospital-info--img{
-        max-width: 100%;
         max-height: 200px;
-        margin: 0 auto;
     }
 
     #content .container-tab-funtion-map--controls .open-map{
