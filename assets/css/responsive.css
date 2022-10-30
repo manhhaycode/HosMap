@@ -1,4 +1,7 @@
 @media (max-width: 740px) {
+    body{
+        overflow: unset;
+    }
     #content .container-tab-function-map{
         min-width: unset;
         max-width: unset;
