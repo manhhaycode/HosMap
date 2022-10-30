@@ -12,12 +12,12 @@ html{
     line-height: 1.5;
     box-sizing: border-box;
     font-family: "Roboto",sans-serif;
-    min-height: -webkit-fill-available;
+    height: -webkit-fill-available;
 }
 
 body{
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  height: 100vh;
+  height: -webkit-fill-available;
 }
 
 .load-page .img-load-page{
