@@ -1,4 +1,4 @@
-@media (max-width: 920px) {
+@media (min-width: 740px) {
     #content .container-tab-function-map{
         min-width: unset;
         max-width: unset;
