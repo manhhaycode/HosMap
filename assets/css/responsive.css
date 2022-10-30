@@ -51,7 +51,7 @@
     }
 
     #content .container-tab-funtion-map--controls .open-map{
-        position: absolute;
+        position: fixed;
         border-radius: 20px;
         font-size: 15px;
         font-family: "Roboto",sans-serif;

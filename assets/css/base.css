@@ -15,7 +15,7 @@ html{
 }
 
 body{
-  height: var(--window-height);
+  height: 100vh;
 }
 
 .load-page .img-load-page{
