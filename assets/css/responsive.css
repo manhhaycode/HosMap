@@ -11,15 +11,15 @@
 
     #content .map-container .map-type{
         left: 10px;
-        bottom: 100px;
+        bottom: 60px;
     }
 
     #content .map-container .find-location-button{
-        bottom: 100px;
+        bottom: 60px;
     }
 
     #content .map-search-location-container{
-        top: 125px;
+        top: 75px;
         left: 5px;
     }
 
