@@ -8,8 +8,25 @@ import {
   slideLeft,
   slideRight
 } from "./animation.js";
+let region = "hcm";
 const hospitalList = document.querySelector('.tab-funtion-map--controls__hospitals-list');
 export const findHosInput = document.querySelector('.find-hos-input');
+const regionButtonName = document.querySelector('.region-box--button-name');
+const regionName = document.querySelector('.region-name');
+document.querySelector('.search-region-box').addEventListener('click', async()=>{
+  if(region == "hcm"){
+    regionButtonName.childNodes[0].nodeValue = " Long An 🇻🇳 "
+    regionName.childNodes[0].nodeValue = "Hồ Chí Minh";
+    region = "la";
+  } else {
+    regionButtonName.childNodes[0].nodeValue = " Ho Chi Minh 🇻🇳 "
+    regionName.childNodes[0].nodeValue = "Long An";
+    region = "hcm";
+  }
+  await getHospitalList("");
+})
+
+
 const loadingHospitalList = document.createElement("div");
 loadingHospitalList.classList.add("sk-circle");
 loadingHospitalList.innerHTML = `<div class="sk-circle1 sk-child"></div><div class="sk-circle2 sk-child"></div><div class="sk-circle3 sk-child"></div><div class="sk-circle4 sk-child"></div><div class="sk-circle5 sk-child"></div><div class="sk-circle6 sk-child"></div><div class="sk-circle7 sk-child"></div><div class="sk-circle8 sk-child"></div><div class="sk-circle9 sk-child"></div><div class="sk-circle10 sk-child"></div><div class="sk-circle11 sk-child"></div><div class="sk-circle12 sk-child"></div>`
@@ -20,7 +37,7 @@ export const getHospitalList = async (keyword) => {
   hospitalList.style.background = "#F6F6F6";
   hospitalList.appendChild(loadingHospitalList);
 const res = await getHospitals({
-    city: "la",
+    city: region,
     searchKeyword: keyword,
   });
   let resSorted = sortByDistance(res);

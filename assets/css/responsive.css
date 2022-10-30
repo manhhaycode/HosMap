@@ -1,0 +1,57 @@
+@media only screen and (max-width: 768px) {
+    #content .container-tab-function-map{
+        min-width: unset;
+        max-width: unset;
+        width: 100%;
+        animation: openSlide 0.7s;
+    }
+
+    /* #content .container-tab-function-map{
+        display: none;
+    } */
+    #content .map-container{
+        display: none;
+    }
+    #content .map-container .btn-hide-side-controls{
+        height: 60px;
+        width: 18px;
+        color: #fff;
+        background-color: #3E8CFFFF;
+        border-radius: 0 7px 7px 0;
+        position: absolute;
+        top: calc(50% - 30px);
+        z-index: 1001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    #content .btn-hide-side-controls .svg-inline--fa{
+        display: inline-block;
+        font-size: inherit;
+        height: 1em;
+        overflow: visible;
+        vertical-align: -0.125em;
+        font-size: 18px;
+    }
+
+    #content .container-tab-funtion-map--controls .open-map{
+        position: absolute;
+        border-radius: 20px;
+        font-size: 15px;
+        font-family: "Roboto",sans-serif;
+        background: #3E8CFFFF;
+        color: #fff;
+        padding: 10px 15px 10px 15px;
+        border: none;
+        cursor: pointer;
+        width: 150px;
+        left: calc(50% - 75px);
+        bottom: 25px;
+        display: block;
+    }
+    @keyframes openSlide {
+        from {width: 200px;}
+        to {width: 100%;}
+    }
+}

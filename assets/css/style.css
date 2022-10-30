@@ -11,7 +11,7 @@
 
 #content .map-search-location-container{
     position: absolute;
-    z-index: 999999;
+    z-index: 1000;
     top: 20px;
     left: 25px;
 }
@@ -93,6 +93,10 @@
     width: 76px;
 }
 
+#content .btn-hide-side-controls{
+    display: none;
+}
+
 #nav{
 
 }
@@ -166,6 +170,24 @@
 
 #nav .region-box{
     margin-right: 100px;
+    position: relative;
+}
+
+#nav .region-box .search-region-box{
+    position: absolute;
+    background-color: #fff;
+    z-index: 9999;
+    box-shadow: rgb(0 0 0 / 50%) 0px 2px 4px;
+    width: 100%;
+    display: none;
+}
+
+#nav .search-region-box .region-name{
+    margin: 5px 0;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
 }
 
 #nav .region-box--button{
@@ -307,7 +329,7 @@
 
 #content .indicator{
     visibility: visible;
-    width: 210px;
+    width: 50%;
     left: 0px;
     position: absolute;
     bottom: 0px;
@@ -317,9 +339,12 @@
 }
 
 #content .container-tab-funtion-map--controls{
-    
+
 }
 
+#content .container-tab-funtion-map--controls .open-map{
+    display: none;
+}
 #content .tab-funtion-map--controls{
     padding: 17px 17px 35px;
 }
@@ -462,6 +487,7 @@
 #content .hospital-info .hospital-info--img{
     max-width: 420px;
     max-height: 250px;
+    margin: 0 auto;
 }
 
 #content .hospital-info .hospital-info--name{
@@ -534,3 +560,5 @@
 #footer{
 
 }
+
+
