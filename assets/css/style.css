@@ -544,7 +544,7 @@
 #content .hospital-info__navigate-direction .direct-google-map,
 #content .tab-funtion-map--controls__navigate-direction .direct-search,
 #content .tab-funtion-map--controls__navigate-direction .guide-button{
-    margin-top: 30px;
+    margin-top: 10px;
     border-radius: 20px;
     font-size: 15px;
     font-family: "Roboto",sans-serif;
