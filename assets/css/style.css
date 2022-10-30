@@ -238,6 +238,7 @@
 #content .map-container{
     width: 100%;
     position: relative;
+    display: block;
 }
 
 #content .googleMap{
