@@ -1,10 +1,21 @@
-@media (min-width: 740px) {
+@media (max-width: 740px) {
     #content .container-tab-function-map{
         min-width: unset;
         max-width: unset;
         width: 100%;
         animation: openSlide 0.7s;
     }
+
+    #content .map-search-location-container{
+        top: 10px;
+        left: 5px;
+    }
+
+    #content .map-search-location--input{
+        width: 320px;
+    }
+
+    #content .tab-funtion-map--controls__hospital-container .tab-funtion-map--controls__hospital-info{}
 
     /* #content .container-tab-function-map{
         display: none;

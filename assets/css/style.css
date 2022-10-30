@@ -169,7 +169,7 @@
 }
 
 #nav .region-box{
-    margin-right: 100px;
+    margin-right: 6.5%;
     position: relative;
 }
 
@@ -486,7 +486,7 @@
 
 
 #content .hospital-info .hospital-info--img{
-    max-width: 420px;
+    max-width: 100%;
     max-height: 250px;
     margin: 0 auto;
 }
