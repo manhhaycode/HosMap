@@ -63,3 +63,10 @@ btnHideSide.addEventListener('click', ()=>{
 	mapControlContainer.style.display = "block";
 	mapContainer.style.display ="none";
 })
+
+const windowHeight = () => {
+    const doc = document.documentElement
+    doc.style.setProperty('--window-height', `${window.innerHeight}px`)
+}
+window.addEventListener('resize', windowHeight);
+windowHeight();

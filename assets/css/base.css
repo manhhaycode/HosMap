@@ -15,7 +15,7 @@ html{
 }
 
 body{
-  min-height: 100vh;
+  height: var(--window-height);
 }
 
 .load-page .img-load-page{
