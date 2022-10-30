@@ -64,9 +64,8 @@ btnHideSide.addEventListener('click', ()=>{
 	mapContainer.style.display ="none";
 })
 
-// const windowHeight = () => {
-//     const doc = document.documentElement
-//     doc.style.setProperty('--window-height', `${window.innerHeight}px`)
-// }
-// window.addEventListener('resize', windowHeight);
-// windowHeight();
+const windowHeight = () => {
+	document.getElementsByTagName('body')[0].style.height = window.innerHeight;
+}
+window.addEventListener('resize', windowHeight);
+windowHeight();
