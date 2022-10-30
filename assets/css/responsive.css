@@ -9,8 +9,17 @@
         animation: openSlide 0.7s;
     }
 
+    #content .map-container .map-type{
+        left: 10px;
+        bottom: 100px;
+    }
+
+    #content .map-container .find-location-button{
+        bottom: 100px;
+    }
+
     #content .map-search-location-container{
-        top: 10px;
+        top: 125px;
         left: 5px;
     }
 
