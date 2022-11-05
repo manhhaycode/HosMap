@@ -6,7 +6,23 @@ import {
   setDoc,
 } from "https://www.gstatic.com/firebasejs/9.11.0/firebase-firestore.js";
 
-import { db } from "./index.js";
+import {
+  signInWithEmailAndPassword,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/9.11.0/firebase-auth.js";
+import {
+  getDatabase,
+  ref,
+  set,
+  child,
+  get,
+  update,
+  push,
+  remove,
+  onValue,
+} from "https://www.gstatic.com/firebasejs/9.11.0/firebase-database.js";
+
+import { db, auth, database } from "./index.js";
 
 const covertStr = (str) => {
   return str
@@ -76,6 +92,18 @@ export const getHospitalById = async (id) => {
   }
 };
 
+export const getHospitalByAccount = async (id) => {
+  const accountDoc = doc(db, "account", id);
+  const accountSnapshot = await getDoc(accountDoc);
+  if (accountSnapshot.exists()) {
+    const data = accountSnapshot.data();
+    const hospitalDetail = await getHospitalById(data.hosId);
+    return hospitalDetail;
+  } else {
+    Promise.reject("Not found");
+  }
+};
+
 /**
  *
  * @param {*} data
@@ -99,4 +127,90 @@ export const addHospital = async (data) => {
     console.log(error);
     return "error";
   }
+};
+
+//Authenticate
+export const signIn = async ({ email, password }) => {
+  const res = await signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      return getHospitalByAccount(user.uid);
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      return errorMessage;
+    });
+
+  return res;
+};
+
+export const logOut = async () => {
+  return signOut(auth)
+    .then(() => {
+      return "success";
+    })
+    .catch((error) => {
+      return "error";
+    });
+};
+//Authenticate
+
+//Call realtime
+export const callAmbulance = (hosId, coordinate) => {
+  const newPostRef = push(ref(database, "call/" + hosId.split(".")[0]));
+  set(newPostRef, {
+    coordinate,
+    hosId,
+    ambulance: false,
+    ambulancePos: "",
+  });
+
+  return newPostRef.key;
+};
+
+export const listenCall = (hosId, callback) => {
+  const callRef = ref(database, "call/" + hosId.split(".")[0]);
+  onValue(callRef, (snapshot) => {
+    const data = snapshot.val();
+    const mappedData = Object.keys(data).map((key) => {
+      return {
+        ...data[key],
+        cId: key,
+      };
+    });
+    callback(mappedData);
+  });
+};
+
+export const listenAmbulance = (hosId, keyCall, callback) => {
+  const callRef = ref(database, "call/" + hosId.split(".")[0] + "/" + keyCall);
+  onValue(callRef, (snapshot) => {
+    const data = snapshot.val();
+    callback(data);
+  });
+};
+
+export const receiveCall = (hosId, keyCall) => {
+  const callRef = ref(database, "call/" + hosId.split(".")[0] + "/" + keyCall);
+  update(callRef, {
+    ambulance: true,
+  });
+};
+
+export const updatePosition = (hosId, keyCall, ambulancePos) => {
+  const callRef = ref(database, "call/" + hosId.split(".")[0] + "/" + keyCall);
+  update(callRef, {
+    ambulancePos: ambulancePos,
+  });
+  console.log(callRef);
+};
+
+export const deleteCall = (hosId, keyCall) => {
+  remove(ref(database, "call/" + hosId.split(".")[0] + "/" + keyCall));
+};
+export const deleteAllCall = () => {
+  remove(ref(database, "call/"));
 };
