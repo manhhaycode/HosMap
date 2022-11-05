@@ -11,7 +11,7 @@
 
 #content .map-search-location-container{
     position: absolute;
-    z-index: 999999;
+    z-index: 1000;
     top: 20px;
     left: 25px;
 }
@@ -93,6 +93,10 @@
     width: 76px;
 }
 
+#content .btn-hide-side-controls{
+    display: none;
+}
+
 #nav{
 
 }
@@ -158,14 +162,32 @@
 
 #nav .spacer{
     width: 0.5px;
-    height: calc(100% - 32px);
+    height: calc(100vh - 32px);
     background-color: #fff;
     margin: 0 26px;
     opacity: .8;
 }
 
 #nav .region-box{
-    margin-right: 100px;
+    margin-right: 6.5%;
+    position: relative;
+}
+
+#nav .region-box .search-region-box{
+    position: absolute;
+    background-color: #fff;
+    z-index: 9999;
+    box-shadow: rgb(0 0 0 / 50%) 0px 2px 4px;
+    width: 100%;
+    display: none;
+}
+
+#nav .search-region-box .region-name{
+    margin: 5px 0;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
 }
 
 #nav .region-box--button{
@@ -216,6 +238,7 @@
 #content .map-container{
     width: 100%;
     position: relative;
+    display: block;
 }
 
 #content .googleMap{
@@ -224,7 +247,8 @@
 
 #content .container-tab-function-map{
     min-width: 420px;
-    height: calc(100vh - 55px);
+    max-width: 420px;
+    height: calc(100% - 55px);
     background-color: #fff;
     position: relative;
 }
@@ -306,7 +330,7 @@
 
 #content .indicator{
     visibility: visible;
-    width: 210px;
+    width: 50%;
     left: 0px;
     position: absolute;
     bottom: 0px;
@@ -316,9 +340,12 @@
 }
 
 #content .container-tab-funtion-map--controls{
-    
+
 }
 
+#content .container-tab-funtion-map--controls .open-map{
+    display: none;
+}
 #content .tab-funtion-map--controls{
     padding: 17px 17px 35px;
 }
@@ -459,8 +486,9 @@
 
 
 #content .hospital-info .hospital-info--img{
-    max-width: 420px;
+    max-width: 100%;
     max-height: 250px;
+    margin: 0 auto;
 }
 
 #content .hospital-info .hospital-info--name{
@@ -516,7 +544,7 @@
 #content .hospital-info__navigate-direction .direct-google-map,
 #content .tab-funtion-map--controls__navigate-direction .direct-search,
 #content .tab-funtion-map--controls__navigate-direction .guide-button{
-    margin-top: 30px;
+    margin-top: 10px;
     border-radius: 20px;
     font-size: 15px;
     font-family: "Roboto",sans-serif;
@@ -533,3 +561,5 @@
 #footer{
 
 }
+
+
