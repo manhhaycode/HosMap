@@ -159,11 +159,12 @@ export const logOut = async () => {
 //Authenticate
 
 //Call realtime
-export const callAmbulance = (hosId, coordinate) => {
+export const callAmbulance = (hosId, coordinate, phone) => {
   const newPostRef = push(ref(database, "call/" + hosId.split(".")[0]));
   set(newPostRef, {
     coordinate,
     hosId,
+    phone,
     ambulance: false,
     ambulancePos: "",
   });
