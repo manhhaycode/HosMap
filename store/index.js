@@ -35,9 +35,9 @@ export { app, db, auth, database };
 
 // Test
 
-const clgChange = (value) => {
-  console.log(value);
-};
+// const clgChange = (value) => {
+//   console.log(value);
+// };
 
 const id = callAmbulance("1842979c32e0.eb8e1b09ef8e", "HN", "0909123");
 // listenAmbulance("1842979c32e0.eb8e1b09ef8e6", id, clgChange);
