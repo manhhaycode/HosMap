@@ -161,6 +161,12 @@ export const logOut = async () => {
 //Call realtime
 export const callAmbulance = (hosId, coordinate, phone) => {
   const newPostRef = push(ref(database, "call/" + hosId.split(".")[0]));
+  const amountRef = ref(database, "call/" + hosId.split(".")[0] + "/amount");
+  get(amountRef).then((snapshot) => {
+    if (!snapshot.exists()) {
+      update(ref(database, "call/" + hosId.split(".")[0]), { amount: 3 });
+    }
+  });
   set(newPostRef, {
     coordinate,
     hosId,
@@ -194,11 +200,29 @@ export const listenAmbulance = (hosId, keyCall, callback) => {
   });
 };
 
-export const receiveCall = (hosId, keyCall) => {
+export const receiveCall = async (hosId, keyCall) => {
   const callRef = ref(database, "call/" + hosId.split(".")[0] + "/" + keyCall);
+  const amountRef = ref(database, "call/" + hosId.split(".")[0] + "/amount");
+
   update(callRef, {
     ambulance: true,
   });
+  const amount = await get(amountRef)
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        return 0;
+      }
+    })
+    .catch(() => {
+      return 0;
+    });
+  if (amount > 0) {
+    update(ref(database, "call/" + hosId.split(".")[0]), {
+      amount: amount - 1,
+    });
+  }
 };
 
 export const updatePosition = (hosId, keyCall, ambulancePos) => {
