@@ -11,6 +11,7 @@ import {
   receiveCall,
   deleteCall,
   deleteAllCall,
+  listenAmount,
 } from "./api.js";
 
 const firebaseConfig = {
@@ -35,13 +36,13 @@ export { app, db, auth, database };
 
 // Test
 
-// const clgChange = (value) => {
-//   console.log(value);
-// };
+const clgChange = (value) => {
+  console.log(value);
+};
 
 const id = callAmbulance("1842979c32e0.eb8e1b09ef8e", "HN", "0909123");
 // listenAmbulance("1842979c32e0.eb8e1b09ef8e6", id, clgChange);
-// listenCall("1842979c32e0.eb8e1b09ef8e6", clgChange);
+// listenAmount("1842979c32e0.eb8e1b09ef8e6", clgChange);
 // receiveCall("1842979c32e0.eb8e1b09ef8e6", id);
 // updatePosition("1842979c32e0.eb8e1b09ef8e6", id, "HCM");
 

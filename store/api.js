@@ -182,13 +182,15 @@ export const listenCall = (hosId, callback) => {
   const callRef = ref(database, "call/" + hosId.split(".")[0]);
   onValue(callRef, (snapshot) => {
     const data = snapshot.val();
-    const mappedData = Object.keys(data).map((key) => {
-      return {
-        ...data[key],
-        cId: key,
-      };
-    });
-    callback(mappedData);
+    const mappedData = Object.keys(data)
+      .filter((key) => key !== "amount")
+      .map((key) => {
+        return {
+          ...data[key],
+          cId: key,
+        };
+      });
+    callback(mappedData, data.amount);
   });
 };
 
@@ -197,6 +199,14 @@ export const listenAmbulance = (hosId, keyCall, callback) => {
   onValue(callRef, (snapshot) => {
     const data = snapshot.val();
     callback(data);
+  });
+};
+
+export const listenAmount = (hosId, callback) => {
+  const callRef = ref(database, "call/" + hosId.split(".")[0]);
+  onValue(callRef, (snapshot) => {
+    const data = snapshot.val();
+    callback(data.amount);
   });
 };
 
