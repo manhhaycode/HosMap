@@ -40,22 +40,33 @@ const res = await getHospitals({
     city: region,
     searchKeyword: keyword,
   });
-  let resSorted = sortByDistance(res);
-  hospitalList.innerHTML = ``;
-  resSorted.map((hos, i) => {
-    const boxHospital = document.createElement("div");
-    boxHospital.classList.add("tab-funtion-map--controls__hospital-container");
-    boxHospital.setAttribute("id_hospital", hos.id);
-    boxHospital.addEventListener("click", async () =>{
-      await getHospitalInfo(hos.id);
+  if(locationlatLng){
+    if(document.querySelector('.hospital-list-error-cointainer')){
+      document.querySelector('.hospital-list-error-cointainer').remove();
+      document.querySelector('.tab-funtion-map--controls__header').style.display = "block";
+    }
+    let resSorted = sortByDistance(res);
+    hospitalList.innerHTML = ``;
+    resSorted.map((hos, i) => {
+      const boxHospital = document.createElement("div");
+      boxHospital.classList.add("tab-funtion-map--controls__hospital-container");
+      boxHospital.setAttribute("id_hospital", hos.id);
+      boxHospital.addEventListener("click", async () =>{
+        await getHospitalInfo(hos.id);
+      });
+      boxHospital.innerHTML = `<div class="tab-funtion-map--controls__hospital-name-address"><div class="hospital-name-address--icon"><img src="./assets/img/icons8-hospital-64.png" class="hospital-name-address--icon__img" alt=""></div><div class="hospital-name-address--text"><h2 class="hospital--name">${hos.name}</h2><p class="hospital--address">${hos.location}</p></div></div><div class="tab-funtion-map--controls__hospital-info"><button class="phone-number"><svg xmlns="http://www.w3.org/2000/svg" class="phone-number--icon" fill="#4069E5FF" id="Flat" viewBox="0 0 256 256"><path d="M176,224C96.59766,224,32,159.40234,32,80A56.07029,56.07029,0,0,1,80.91992,24.44434a16.037,16.037,0,0,1,16.65235,9.583l20.09179,46.87793a15.96924,15.96924,0,0,1-1.32031,15.06641L99.709,121.38965l-.00195.00195a76.54083,76.54083,0,0,0,35.20508,35.04981l25.043-16.69336a15.95163,15.95163,0,0,1,15.17871-1.39453l46.83789,20.07324a16.03476,16.03476,0,0,1,9.584,16.65234A56.07032,56.07032,0,0,1,176,224ZM82.86621,40.33105A40.01746,40.01746,0,0,0,48,80,128.1454,128.1454,0,0,0,176,208a40.04283,40.04283,0,0,0,39.68262-34.92578L168.832,153.06055l-25.03515,16.69433a15.98041,15.98041,0,0,1-15.74512,1.14063,92.59535,92.59535,0,0,1-42.76367-42.56934,15.993,15.993,0,0,1,1.03222-15.69824l16.63574-25.419Zm52.1416,116.15625h0Z"/></svg><p class="phone-number--text">${hos.hotline.split(' ').join('')}</p></button><div class="distance-hospital"><svg xmlns="http://www.w3.org/2000/svg" class="distance-hospital--icon" fill="#ef9834" id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/></svg><p class="distance-hospital--text">${hos.distance}km</p></div><div class="ambulance-status"><svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill="#1DD75B" id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/></svg><p class="ambulance-status--text">Còn xe</p></div></div>`;
+      hospitalList.appendChild(boxHospital);
     });
-    boxHospital.innerHTML = `<div class="tab-funtion-map--controls__hospital-name-address"><div class="hospital-name-address--icon"><img src="./assets/img/icons8-hospital-64.png" class="hospital-name-address--icon__img" alt=""></div><div class="hospital-name-address--text"><h2 class="hospital--name">${hos.name}</h2><p class="hospital--address">${hos.location}</p></div></div><div class="tab-funtion-map--controls__hospital-info"><button class="phone-number"><svg xmlns="http://www.w3.org/2000/svg" class="phone-number--icon" fill="#4069E5FF" id="Flat" viewBox="0 0 256 256"><path d="M176,224C96.59766,224,32,159.40234,32,80A56.07029,56.07029,0,0,1,80.91992,24.44434a16.037,16.037,0,0,1,16.65235,9.583l20.09179,46.87793a15.96924,15.96924,0,0,1-1.32031,15.06641L99.709,121.38965l-.00195.00195a76.54083,76.54083,0,0,0,35.20508,35.04981l25.043-16.69336a15.95163,15.95163,0,0,1,15.17871-1.39453l46.83789,20.07324a16.03476,16.03476,0,0,1,9.584,16.65234A56.07032,56.07032,0,0,1,176,224ZM82.86621,40.33105A40.01746,40.01746,0,0,0,48,80,128.1454,128.1454,0,0,0,176,208a40.04283,40.04283,0,0,0,39.68262-34.92578L168.832,153.06055l-25.03515,16.69433a15.98041,15.98041,0,0,1-15.74512,1.14063,92.59535,92.59535,0,0,1-42.76367-42.56934,15.993,15.993,0,0,1,1.03222-15.69824l16.63574-25.419Zm52.1416,116.15625h0Z"/></svg><p class="phone-number--text">${hos.hotline.split(' ').join('')}</p></button><div class="distance-hospital"><svg xmlns="http://www.w3.org/2000/svg" class="distance-hospital--icon" fill="#ef9834" id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/></svg><p class="distance-hospital--text">${hos.distance}km</p></div><div class="ambulance-status"><svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill="#1DD75B" id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/></svg><p class="ambulance-status--text">Còn xe</p></div></div>`;
-    hospitalList.appendChild(boxHospital);
-  });
-  loadingHospitalList.remove();
-  hospitalList.style.background = "none";
-  // console.log(resSorted)
-  return resSorted;
+    loadingHospitalList.remove();
+    hospitalList.style.background = "none";
+    // console.log(resSorted)
+    return resSorted;
+  } else{
+    loadingHospitalList.remove();
+    document.querySelector('.tab-funtion-map--controls__header').style.display = "none";
+    hospitalList.style.background = "none";
+  }
+
 }
 
 const getHospitalInfo = async(id) =>{
@@ -66,12 +77,25 @@ const getHospitalInfo = async(id) =>{
   const imgHospital = document.createElement("img");
   imgHospital.classList.add("hospital-info--img");
   imgHospital.setAttribute("src", hos.image);
-  boxHospital.innerHTML = `<h2 class="hospital-info--name">${hos.name}</h2> <span class="hospital-info--location"><img class="hospital-info--location_icon" src="./assets/img/map-pin.svg" alt=""><p class="hospital-info--location_address">${hos.location}</p></span> <span class="hospital-info--phone"><img class="hospital-info--phone_icon" src="./assets/img/phone.svg" alt=""><p class="hospital-info--phone_number">${hos.hotline}</p></span> <span class="hospital-info--specialist"><img class="hospital-info--specialist_icon" src="./assets/img/first-aid.svg" alt=""><p class="hospital-info--specialist_name">Đa khoa</p></span> <div class="ambulance-status"><svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill="#1DD75B" id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"></path></svg><p class="ambulance-status--text">Còn xe</p></div> <div class="hospital-info__navigate-direction"> <button class="direct-google-map"><a target="_blank" href=${getAdress(locationlatLng, hos.location)}>Dẫn đường</a></button> <button class="direct-search">Tìm kiếm</button> </div>`;
+  boxHospital.innerHTML = `<h2 class="hospital-info--name">${hos.name}</h2> <span class="hospital-info--location"><img class="hospital-info--location_icon" src="./assets/img/map-pin.svg" alt=""><p class="hospital-info--location_address">${hos.location}</p></span> <span class="hospital-info--phone"><img class="hospital-info--phone_icon" src="./assets/img/phone.svg" alt=""><p class="hospital-info--phone_number">${hos.hotline}</p></span> <span class="hospital-info--specialist"><img class="hospital-info--specialist_icon" src="./assets/img/first-aid.svg" alt=""><p class="hospital-info--specialist_name">Đa khoa</p></span> <div class="ambulance-status"><svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill="#1DD75B" id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"></path></svg><p class="ambulance-status--text">Còn xe</p></div>`;
+  const boxHospitalNavigate = document.createElement('div')
+  boxHospitalNavigate.classList.add('hospital-info__navigate-direction')
+  boxHospitalNavigate.innerHTML = `<button class="direct-google-map"><a target="_blank" href=${getAdress(locationlatLng, hos.location)}>Dẫn đường</a></button>`
+  const btnCallAmbulance = document.createElement('button');
+  btnCallAmbulance.classList.add("direct-search");
+  btnCallAmbulance.innerHTML = "Gọi online";
+  btnCallAmbulance.addEventListener('click', ()=>{
+    alert('click');
+  })
+  boxHospitalNavigate.appendChild(btnCallAmbulance)
+  document.querySelector
   if(document.querySelector(".hospital-info") != null){
     document.querySelector(".hospital-info").remove();
   }
+  boxHospital.appendChild(boxHospitalNavigate)
   document.querySelector(".tab-funtion-map--controls__navigate").appendChild(boxHospital);
   boxHospital.insertAdjacentElement("afterbegin", imgHospital);
+  console.log(document.querySelector('.tab-funtion-map--controls__navigate-container.hospital-info').getAttribute("id_hospital"))
   document.querySelector(".hospital-info--img").addEventListener("load", hospitalInfo);
 }
 

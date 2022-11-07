@@ -34,6 +34,8 @@ export function hospitalInfo(e) {
 	document.querySelector('.tab-funtion-map--controls__navigate-container.error').style.display = "none";
 }
 
+export function hospitalList(e){}
+
 export function slideLeft(e) {
 	headerNavigate.classList.remove('active');
 	headerSearch.classList.add('active');

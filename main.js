@@ -36,7 +36,8 @@ function getLocation(map, marker) {
 }
 
 import {styles} from "./mapStyle.js";
-export let locationlatLng = "10.841317264569343, 106.80994737008923";
+// "10.841317264569343, 106.80994737008923"
+export let locationlatLng;
 function myMap() {
     var activeLocation;
     var moveActiveLocation;
@@ -65,8 +66,7 @@ function myMap() {
         name: "Hospital Map FPTU"
     });
 
-    window.map =  new google.maps.Map(document.getElementById("googleMap"),mapProp);
-    console.log(map)
+    let map =  new google.maps.Map(document.getElementById("googleMap"),mapProp);
     map.mapTypes.set('custom_map_style', styledMap);
     map.setMapTypeId('custom_map_style');
     document.querySelector('.map-type').addEventListener("click", () =>{
