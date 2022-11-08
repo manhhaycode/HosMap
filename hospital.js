@@ -40,7 +40,6 @@ loadingHospitalList.innerHTML = `<div class="sk-circle1 sk-child"></div><div cla
 export const getHospitalList = async (keyword) => {
   let ambulanceStatus = await getAmount("1842979c32e0.eb8e1b09ef8e6");
   let status = "Còn xe", colorStatus = "#1DD75B"
-  console.log(ambulanceStatus)
   if(ambulanceStatus.amount==0){
     status = "Hết xe";
     colorStatus = "red";
@@ -83,7 +82,6 @@ const res = await getHospitals({
     document.querySelector('.tab-funtion-map--controls__header').style.display = "none";
     hospitalList.style.background = "none";
   }
-  console.log("render")
 }
 
 const getHospitalInfo = async(id) =>{
@@ -127,7 +125,6 @@ const getHospitalInfo = async(id) =>{
   boxHospital.appendChild(boxHospitalNavigate)
   document.querySelector(".tab-funtion-map--controls__navigate").appendChild(boxHospital);
   boxHospital.insertAdjacentElement("afterbegin", imgHospital);
-  console.log(document.querySelector('.tab-funtion-map--controls__navigate-container.hospital-info').getAttribute("id_hospital"))
   document.querySelector(".hospital-info--img").addEventListener("load", hospitalInfo);
 }
 
@@ -204,7 +201,6 @@ const validateForm = async (e)=>{
       document.cookie= `_hId=${id_hospital}; expires=${now.toUTCString()}; Path=/`;
       document.cookie= `_cId=${key}; expires=${now.toUTCString()}; Path=/`;
       window.location.href = "/ontheway";
-      console.log('ontheway')
     });
   } else{
     alert("Tính năng gọi online tại bệnh viện này chưa khả dụng!")

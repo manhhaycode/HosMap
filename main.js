@@ -24,7 +24,6 @@ function getLocation(map, marker) {
             navigator.geolocation.getCurrentPosition((position) =>{
                 findLocation.classList.add("active");
                 locationlatLng = `${position.coords.latitude}, ${position.coords.longitude}`;
-                console.log(locationlatLng);  
                 slideLeft();
                 getHospitalList("")
                 let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -51,11 +50,9 @@ function myMap() {
         var x;
         if((x = key.split("="))[0]=="_hId"){
             hId = x[1];
-            console.log(hId);
         }
         if((x = key.split("="))[0]=="_cId"){
             callCase = x[1];
-            console.log(callCase);
         }
     })
 
@@ -163,7 +160,6 @@ function myMap() {
             findHosInput.value ="";
             locationlatLng = `${place.geometry.location.lat()}, ${place.geometry.location.lng()}`;          
             addressInput();  
-            console.log(place.geometry.location);
             map.setCenter(place.geometry.location);
             map.setZoom(17);
             // Why 17? Because it looks good.

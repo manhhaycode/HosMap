@@ -259,7 +259,6 @@ export const updatePosition = (hosId, keyCall, ambulancePos) => {
   update(callRef, {
     ambulancePos: ambulancePos,
   });
-  console.log(callRef);
 };
 
 export const deleteCall = (hosId, keyCall) => {
