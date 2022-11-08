@@ -112,10 +112,32 @@
   <div id="footer">
 
   </div>
-  
+  <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Gọi xe cấp cứu online</h5>
+          <button type="button" class="btn-close-1" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <form class = "myForm" action="">
+          <div class="modal-body">
+            <label for="city">Vui lòng nhập số điện thoại</label><br>
+            <input type="text" placeholder="Số điện thoại ..." name="phone" class="input-phone-number" required>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary btn-confirm">Xác nhận</button>
+            <button type="button" class="btn btn-secondary btn-close-2" data-dismiss="modal">Đóng</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </body>
 <!-- AIzaSyBXonzxvAl5VdZbt5Iib4BncKfB6izJZd8 -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXonzxvAl5VdZbt5Iib4BncKfB6izJZd8&libraries=places&region=VN&language=vi&callback=myMap" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&region=VN&language=vi&callback=myMap" defer></script>
 <script src="animation.js" type="module"></script>
 <script src="./store/index.js" type="module"></script>
 <script src="./store/api.js" type="module"></script>

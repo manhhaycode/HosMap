@@ -1,6 +1,8 @@
 import { 
   getHospitals, 
-  getHospitalById
+  getHospitalById,
+  callAmbulance,
+  listenAmount,
 } from "./store/api.js";
 import { locationlatLng } from "./main.js";
 import { 
@@ -8,11 +10,13 @@ import {
   slideLeft,
   slideRight
 } from "./animation.js";
-let region = "hcm";
+
+let region = "hcm", id_hospital;
 const hospitalList = document.querySelector('.tab-funtion-map--controls__hospitals-list');
 export const findHosInput = document.querySelector('.find-hos-input');
 const regionButtonName = document.querySelector('.region-box--button-name');
 const regionName = document.querySelector('.region-name');
+const modal = document.querySelector('.modal');
 document.querySelector('.search-region-box').addEventListener('click', async()=>{
   if(region == "hcm"){
     regionButtonName.childNodes[0].nodeValue = " Long An 🇻🇳 "
@@ -31,7 +35,12 @@ const loadingHospitalList = document.createElement("div");
 loadingHospitalList.classList.add("sk-circle");
 loadingHospitalList.innerHTML = `<div class="sk-circle1 sk-child"></div><div class="sk-circle2 sk-child"></div><div class="sk-circle3 sk-child"></div><div class="sk-circle4 sk-child"></div><div class="sk-circle5 sk-child"></div><div class="sk-circle6 sk-child"></div><div class="sk-circle7 sk-child"></div><div class="sk-circle8 sk-child"></div><div class="sk-circle9 sk-child"></div><div class="sk-circle10 sk-child"></div><div class="sk-circle11 sk-child"></div><div class="sk-circle12 sk-child"></div>`
  
-export const getHospitalList = async (keyword) => {
+export const getHospitalList = async (keyword, ambulanceStatus) => {
+  let status = "Còn xe", colorStatus = "#1DD75B"
+  if(ambulanceStatus){
+    status = "Hết xe";
+    colorStatus = "red";
+  }
   slideLeft();
   hospitalList.innerHTML = ``;
   hospitalList.style.background = "#F6F6F6";
@@ -54,7 +63,12 @@ const res = await getHospitals({
       boxHospital.addEventListener("click", async () =>{
         await getHospitalInfo(hos.id);
       });
-      boxHospital.innerHTML = `<div class="tab-funtion-map--controls__hospital-name-address"><div class="hospital-name-address--icon"><img src="./assets/img/icons8-hospital-64.png" class="hospital-name-address--icon__img" alt=""></div><div class="hospital-name-address--text"><h2 class="hospital--name">${hos.name}</h2><p class="hospital--address">${hos.location}</p></div></div><div class="tab-funtion-map--controls__hospital-info"><button class="phone-number"><svg xmlns="http://www.w3.org/2000/svg" class="phone-number--icon" fill="#4069E5FF" id="Flat" viewBox="0 0 256 256"><path d="M176,224C96.59766,224,32,159.40234,32,80A56.07029,56.07029,0,0,1,80.91992,24.44434a16.037,16.037,0,0,1,16.65235,9.583l20.09179,46.87793a15.96924,15.96924,0,0,1-1.32031,15.06641L99.709,121.38965l-.00195.00195a76.54083,76.54083,0,0,0,35.20508,35.04981l25.043-16.69336a15.95163,15.95163,0,0,1,15.17871-1.39453l46.83789,20.07324a16.03476,16.03476,0,0,1,9.584,16.65234A56.07032,56.07032,0,0,1,176,224ZM82.86621,40.33105A40.01746,40.01746,0,0,0,48,80,128.1454,128.1454,0,0,0,176,208a40.04283,40.04283,0,0,0,39.68262-34.92578L168.832,153.06055l-25.03515,16.69433a15.98041,15.98041,0,0,1-15.74512,1.14063,92.59535,92.59535,0,0,1-42.76367-42.56934,15.993,15.993,0,0,1,1.03222-15.69824l16.63574-25.419Zm52.1416,116.15625h0Z"/></svg><p class="phone-number--text">${hos.hotline.split(' ').join('')}</p></button><div class="distance-hospital"><svg xmlns="http://www.w3.org/2000/svg" class="distance-hospital--icon" fill="#ef9834" id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/></svg><p class="distance-hospital--text">${hos.distance}km</p></div><div class="ambulance-status"><svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill="#1DD75B" id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/></svg><p class="ambulance-status--text">Còn xe</p></div></div>`;
+      if(hos.id!="1842979c32e0.eb8e1b09ef8e6"){
+        boxHospital.innerHTML = `<div class="tab-funtion-map--controls__hospital-name-address"><div class="hospital-name-address--icon"><img src="./assets/img/icons8-hospital-64.png" class="hospital-name-address--icon__img" alt=""></div><div class="hospital-name-address--text"><h2 class="hospital--name">${hos.name}</h2><p class="hospital--address">${hos.location}</p></div></div><div class="tab-funtion-map--controls__hospital-info"><button class="phone-number"><svg xmlns="http://www.w3.org/2000/svg" class="phone-number--icon" fill="#4069E5FF" id="Flat" viewBox="0 0 256 256"><path d="M176,224C96.59766,224,32,159.40234,32,80A56.07029,56.07029,0,0,1,80.91992,24.44434a16.037,16.037,0,0,1,16.65235,9.583l20.09179,46.87793a15.96924,15.96924,0,0,1-1.32031,15.06641L99.709,121.38965l-.00195.00195a76.54083,76.54083,0,0,0,35.20508,35.04981l25.043-16.69336a15.95163,15.95163,0,0,1,15.17871-1.39453l46.83789,20.07324a16.03476,16.03476,0,0,1,9.584,16.65234A56.07032,56.07032,0,0,1,176,224ZM82.86621,40.33105A40.01746,40.01746,0,0,0,48,80,128.1454,128.1454,0,0,0,176,208a40.04283,40.04283,0,0,0,39.68262-34.92578L168.832,153.06055l-25.03515,16.69433a15.98041,15.98041,0,0,1-15.74512,1.14063,92.59535,92.59535,0,0,1-42.76367-42.56934,15.993,15.993,0,0,1,1.03222-15.69824l16.63574-25.419Zm52.1416,116.15625h0Z"/></svg><p class="phone-number--text">${hos.hotline.split(' ').join('')}</p></button><div class="distance-hospital"><svg xmlns="http://www.w3.org/2000/svg" class="distance-hospital--icon" fill="#ef9834" id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/></svg><p class="distance-hospital--text">${hos.distance}km</p></div><div class="ambulance-status"><svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill="#1DD75B" id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/></svg><p class="ambulance-status--text">Còn xe</p></div></div>`;
+      } else{
+        boxHospital.innerHTML = `<div class="tab-funtion-map--controls__hospital-name-address"><div class="hospital-name-address--icon"><img src="./assets/img/icons8-hospital-64.png" class="hospital-name-address--icon__img" alt=""></div><div class="hospital-name-address--text"><h2 class="hospital--name">${hos.name}</h2><p class="hospital--address">${hos.location}</p></div></div><div class="tab-funtion-map--controls__hospital-info"><button class="phone-number"><svg xmlns="http://www.w3.org/2000/svg" class="phone-number--icon" fill="#4069E5FF" id="Flat" viewBox="0 0 256 256"><path d="M176,224C96.59766,224,32,159.40234,32,80A56.07029,56.07029,0,0,1,80.91992,24.44434a16.037,16.037,0,0,1,16.65235,9.583l20.09179,46.87793a15.96924,15.96924,0,0,1-1.32031,15.06641L99.709,121.38965l-.00195.00195a76.54083,76.54083,0,0,0,35.20508,35.04981l25.043-16.69336a15.95163,15.95163,0,0,1,15.17871-1.39453l46.83789,20.07324a16.03476,16.03476,0,0,1,9.584,16.65234A56.07032,56.07032,0,0,1,176,224ZM82.86621,40.33105A40.01746,40.01746,0,0,0,48,80,128.1454,128.1454,0,0,0,176,208a40.04283,40.04283,0,0,0,39.68262-34.92578L168.832,153.06055l-25.03515,16.69433a15.98041,15.98041,0,0,1-15.74512,1.14063,92.59535,92.59535,0,0,1-42.76367-42.56934,15.993,15.993,0,0,1,1.03222-15.69824l16.63574-25.419Zm52.1416,116.15625h0Z"/></svg><p class="phone-number--text">${hos.hotline.split(' ').join('')}</p></button><div class="distance-hospital"><svg xmlns="http://www.w3.org/2000/svg" class="distance-hospital--icon" fill="#ef9834" id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/></svg><p class="distance-hospital--text">${hos.distance}km</p></div><div class="ambulance-status"><svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill=${colorStatus} id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"/></svg><p class="ambulance-status--text">${status}</p></div></div>`;
+      }
+      
       hospitalList.appendChild(boxHospital);
     });
     loadingHospitalList.remove();
@@ -74,6 +88,7 @@ const getHospitalInfo = async(id) =>{
   const boxHospital = document.createElement("div");
   boxHospital.classList.add("tab-funtion-map--controls__navigate-container", "hospital-info");
   boxHospital.setAttribute("id_hospital", hos.id);
+  id_hospital  = hos.id;
   const imgHospital = document.createElement("img");
   imgHospital.classList.add("hospital-info--img");
   imgHospital.setAttribute("src", hos.image);
@@ -85,7 +100,7 @@ const getHospitalInfo = async(id) =>{
   btnCallAmbulance.classList.add("direct-search");
   btnCallAmbulance.innerHTML = "Gọi online";
   btnCallAmbulance.addEventListener('click', ()=>{
-    alert('click');
+    modal.classList.add('open');
   })
   boxHospitalNavigate.appendChild(btnCallAmbulance)
   document.querySelector
@@ -152,6 +167,34 @@ export const addressInput = ()=>{
   document.querySelector('.tab-funtion-map--controls__navigate-container.error').style.display = "flex";
   
 }
+const validateForm = async (e)=>{
+  e.preventDefault();
+  let info = document.querySelector('.tab-funtion-map--controls__navigate-container.hospital-info').getAttribute("id_hospital");
+  if(info=="1842979c32e0.eb8e1b09ef8e6"){
+    let value = document.querySelector('.input-phone-number').value
+    document.querySelector('.modal').classList.remove('open');
+    await callAmbulance(id_hospital, locationlatLng, value).then((key)=>{
+      var now = new Date();
+      now.setDate(now.getDate() + 1);
+      document.cookie= `_hId=${id_hospital}; expires=${now.toUTCString()}; Path=/`;
+      document.cookie= `_cId=${key}; expires=${now.toUTCString()}; Path=/`;
+      window.location.href = "/ontheway";
+      console.log('ontheway')
+    });
+  } else{
+    alert("Tính năng gọi online tại bệnh viện này chưa khả dụng!")
+  }
+
+}
+document.querySelector('.myForm').addEventListener("submit", validateForm);
+
+listenAmount("1842979c32e0.eb8e1b09ef8e6", (amount)=>{
+  if(amount==0){
+    getHospitalList("", "Hết xe");
+  }else{
+    getHospitalList("");
+  }
+})
 
 const getAdress = (latLng, hosLocation) =>{
   var value = document.querySelector('.map-search-location--input').value;

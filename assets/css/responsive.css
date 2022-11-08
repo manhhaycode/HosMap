@@ -1,4 +1,8 @@
 @media (max-width: 740px) {
+
+    .modal-dialog{
+        margin: 8px;
+    }
     body{
         overflow: unset;
     }
@@ -62,7 +66,7 @@
         max-height: 200px;
     }
 
-    #content .container-tab-funtion-map--controls .open-map{
+    .open-map{
         position: fixed;
         border-radius: 20px;
         font-size: 15px;

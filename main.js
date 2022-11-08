@@ -41,7 +41,23 @@ export let locationlatLng;
 function myMap() {
     var activeLocation;
     var moveActiveLocation;
-    var placeChanged;    
+    var placeChanged;
+    let hId, callCase;
+    let cookie_log = document.cookie.split("; ").forEach((key, index)=>{
+        var x;
+        if((x = key.split("="))[0]=="_hId"){
+            hId = x[1];
+            console.log(hId);
+        }
+        if((x = key.split("="))[0]=="_cId"){
+            callCase = x[1];
+            console.log(callCase);
+        }
+    })
+
+    if(hId && callCase){
+    window.location.href = "/ontheway";
+    }    
     const image = {
         url: "./assets/img/FPTU.png",
         scaledSize: new google.maps.Size(75, 33),

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> -->
+  <meta name="google-site-verification" content="xDo5uoC5kvb5cEHkEU1d9X6l1mnx4CsPuInTreXR0yk" />
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/responsive.css">
+  <link rel="stylesheet" href="../ontheway/override.css">
+  <link href = "https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab|Roboto:300,400,500,700" rel = "stylesheet" />
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+  <script src="../ontheway/main.js" type="module"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+  </style>
+</head>
+<body>
+  <div id="header">
+    <div id="nav">
+      <div class="container_nav">
+        <div class="container_nav--logo">
+          <img src="../assets/img/hospital-logo2.png"  class="nav--logo_img" alt="">
+          <div class="nav--logo_text">HosMap</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="content">
+    <div class="container-tab-function-map">
+      <div class="container-tab-funtion-map--header">
+
+        <div id ="search" class="container-tab-funtion-map--header_search">
+          <div class="tab-funtion-map--header_search">
+            <div class="tab-funtion-map--header_search-texture">Đang đợi xe</div>
+          </div>
+        </div>
+        
+        <div class="indicator"></div>
+      </div>
+      
+      <div class="container-tab-funtion-map--controls">
+        <div class="tab-funtion-map--controls">
+          <div class="hospital-list-error-cointainer">
+            <span class="hospitals-list">Đang đợi tài xế nhận ca bệnh...</span>
+            <span class="hospitals-list">Mọi thông tin được cập nhật tự động không cần phải load lại trang web.</span>
+            <div class="box-hospital--ontheway">
+            </div>
+          </div>
+          <button class="open-map">Mở bản đồ</button>  
+          
+        </div>
+
+        <div class="tab-funtion-map--controls__navigate">
+          <div class="tab-funtion-map--controls__navigate-container error">
+            <p class="tab-funtion-map--controls__navigate-error-message">Vui lòng chọn bệnh viện ở phần tìm kiếm để xem thông tin</p>
+            <p class="tab-funtion-map--controls__navigate-error-message">Nếu chưa biết sử dụng hãy xem phần hướng dẫn</p>
+            <div class="tab-funtion-map--controls__navigate-direction">
+              <button class="guide-button">Hướng dẫn</button>
+              <button class="direct-search">Tìm kiếm</button>
+            </div>
+          </div>          
+        </div>
+        
+      </div>
+      
+      
+
+    </div>
+      <div class="map-container">
+        <div class="map-search-location-container">
+          <div class="map-search-location">
+            <input id= "input-1" class="map-search-location--input" type="text" placeholder="Tìm vị trí...">
+          </div>
+        </div>
+        <button class="find-location-button"></button>
+        <div class="btn-hide-side-controls"><!----><fa-icon><svg role="img" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="caret-right" class="svg-inline--fa" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path fill="currentColor" d="M0 384.662V127.338c0-17.818 21.543-26.741 34.142-14.142l128.662 128.662c7.81 7.81 7.81 20.474 0 28.284L34.142 398.804C21.543 411.404 0 402.48 0 384.662z"></path></svg></fa-icon><!----></div>
+        <button class="map-type"></button>
+        <div id="googleMap" style ="position: relative;overflow: hidden;width: 100%;height: 100%;"></div>
+      </div>
+    
+  </div>
+
+  <div id="footer">
+
+  </div>
+  <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Gọi xe cấp cứu online</h5>
+          <button type="button" class="btn-close-1" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <form class = "myForm" action="">
+          <div class="modal-body">
+            <label for="city">Vui lòng nhập số điện thoại</label><br>
+            <input type="text" placeholder="Số điện thoại ..." name="phone" class="input-phone-number" required>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary btn-confirm">Xác nhận</button>
+            <button type="button" class="btn btn-secondary btn-close-2" data-dismiss="modal">Đóng</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+<!-- AIzaSyBXonzxvAl5VdZbt5Iib4BncKfB6izJZd8 -->
+<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&region=VN&language=vi&callback=myMap" defer></script>
+<script src="../ontheway/animation.js" type="module"></script>
+<script src="../store/index.js" type="module"></script>
+<script src="../store/api.js" type="module"></script>
+<script src="../ontheway/hospital.js" type="module"></script>
+
+
+</html>
+

@@ -12,9 +12,16 @@ headerSearch.classList.add('active');
 const imgLoadPage = document.createElement('img');
 const openMap = document.querySelector('.open-map');
 const btnHideSide = document.querySelector('.btn-hide-side-controls')
+document.querySelector('.btn-close-1').addEventListener('click', ()=>{
+	document.querySelector('.modal').classList.remove('open');
+})
+
+document.querySelector('.btn-close-2').addEventListener('click', ()=>{
+	document.querySelector('.modal').classList.remove('open');
+})
 
 imgLoadPage.classList.add('img-load-page');
-imgLoadPage.src = "./assets/img/Pageloading.png";
+imgLoadPage.src = "../assets/img/Pageloading.png";
 document.querySelector(".load-page").insertBefore(imgLoadPage, document.querySelector(".load-page").firstChild);
 document.querySelector('.img-load-page').addEventListener('load',() =>{
 	document.querySelector('.lds-ring').style.display = "block";

@@ -157,12 +157,20 @@ export const logOut = async () => {
     });
 };
 //Authenticate
-
+export const getCaseById = async (hosId, keyCall)=>{
+  let dbr  = ref(database, "call/" + hosId.split(".")[0] + "/" + keyCall)
+  let snapshot = await get(dbr);
+  if (snapshot.exists()) {
+    return snapshot.val()
+  } else {
+    return null;
+  }
+}
 //Call realtime
-export const callAmbulance = (hosId, coordinate, phone) => {
+export const callAmbulance = async(hosId, coordinate, phone) => {
   const newPostRef = push(ref(database, "call/" + hosId.split(".")[0]));
   const amountRef = ref(database, "call/" + hosId.split(".")[0] + "/amount");
-  get(amountRef).then((snapshot) => {
+  await get(amountRef).then((snapshot) => {
     if (!snapshot.exists()) {
       update(ref(database, "call/" + hosId.split(".")[0]), { amount: 3 });
     }
