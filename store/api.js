@@ -166,6 +166,17 @@ export const getCaseById = async (hosId, keyCall)=>{
     return null;
   }
 }
+
+export const getAmount = async(hosId)=>{
+  let dbr  = ref(database, "call/" + hosId.split(".")[0])
+  let snapshot = await get(dbr);
+  if (snapshot.exists()) {
+    return snapshot.val()
+  } else {
+    return null;
+  }
+}
+
 //Call realtime
 export const callAmbulance = async(hosId, coordinate, phone) => {
   const newPostRef = push(ref(database, "call/" + hosId.split(".")[0]));

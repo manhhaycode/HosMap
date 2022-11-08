@@ -4,6 +4,9 @@ import {
     loadingPage,
     addressInput 
 } from "./hospital.js";
+import { 
+    slideLeft 
+} from "./animation.js";
 function getLocation(map, marker) {
     document.querySelector('.map-search-location--input').value = "";
     var findLocation =  document.querySelector('.find-location-button');
@@ -22,6 +25,7 @@ function getLocation(map, marker) {
                 findLocation.classList.add("active");
                 locationlatLng = `${position.coords.latitude}, ${position.coords.longitude}`;
                 console.log(locationlatLng);  
+                slideLeft();
                 getHospitalList("")
                 let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 marker.setMap(map);
@@ -119,6 +123,7 @@ function myMap() {
     })
     marker.addListener('dragend', (position) =>{
         locationlatLng = `${marker.getPosition().lat()}, ${marker.getPosition().lng()}`;  
+        slideLeft();
         getHospitalList("");
     })
     let countIdle = 0;

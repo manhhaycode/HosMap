@@ -3,6 +3,7 @@ import {
   getHospitalById,
   callAmbulance,
   listenAmount,
+  getAmount,
 } from "./store/api.js";
 import { locationlatLng } from "./main.js";
 import { 
@@ -27,6 +28,7 @@ document.querySelector('.search-region-box').addEventListener('click', async()=>
     regionName.childNodes[0].nodeValue = "Long An";
     region = "hcm";
   }
+  slideLeft();
   await getHospitalList("");
 })
 
@@ -35,13 +37,14 @@ const loadingHospitalList = document.createElement("div");
 loadingHospitalList.classList.add("sk-circle");
 loadingHospitalList.innerHTML = `<div class="sk-circle1 sk-child"></div><div class="sk-circle2 sk-child"></div><div class="sk-circle3 sk-child"></div><div class="sk-circle4 sk-child"></div><div class="sk-circle5 sk-child"></div><div class="sk-circle6 sk-child"></div><div class="sk-circle7 sk-child"></div><div class="sk-circle8 sk-child"></div><div class="sk-circle9 sk-child"></div><div class="sk-circle10 sk-child"></div><div class="sk-circle11 sk-child"></div><div class="sk-circle12 sk-child"></div>`
  
-export const getHospitalList = async (keyword, ambulanceStatus) => {
+export const getHospitalList = async (keyword) => {
+  let ambulanceStatus = await getAmount("1842979c32e0.eb8e1b09ef8e6");
   let status = "Còn xe", colorStatus = "#1DD75B"
-  if(ambulanceStatus){
+  console.log(ambulanceStatus)
+  if(ambulanceStatus.amount==0){
     status = "Hết xe";
     colorStatus = "red";
   }
-  slideLeft();
   hospitalList.innerHTML = ``;
   hospitalList.style.background = "#F6F6F6";
   hospitalList.appendChild(loadingHospitalList);
@@ -80,10 +83,19 @@ const res = await getHospitals({
     document.querySelector('.tab-funtion-map--controls__header').style.display = "none";
     hospitalList.style.background = "none";
   }
-
+  console.log("render")
 }
 
 const getHospitalInfo = async(id) =>{
+  let status = "Còn xe", colorStatus = "#1DD75B"
+  let ambulanceStatus
+  if(id == "1842979c32e0.eb8e1b09ef8e6"){
+    ambulanceStatus = await getAmount("1842979c32e0.eb8e1b09ef8e6");
+    if(ambulanceStatus.amount==0){
+      status = "Hết xe";
+      colorStatus = "red";
+    }
+  }
   const hos = await getHospitalById(id);
   const boxHospital = document.createElement("div");
   boxHospital.classList.add("tab-funtion-map--controls__navigate-container", "hospital-info");
@@ -92,7 +104,7 @@ const getHospitalInfo = async(id) =>{
   const imgHospital = document.createElement("img");
   imgHospital.classList.add("hospital-info--img");
   imgHospital.setAttribute("src", hos.image);
-  boxHospital.innerHTML = `<h2 class="hospital-info--name">${hos.name}</h2> <span class="hospital-info--location"><img class="hospital-info--location_icon" src="./assets/img/map-pin.svg" alt=""><p class="hospital-info--location_address">${hos.location}</p></span> <span class="hospital-info--phone"><img class="hospital-info--phone_icon" src="./assets/img/phone.svg" alt=""><p class="hospital-info--phone_number">${hos.hotline}</p></span> <span class="hospital-info--specialist"><img class="hospital-info--specialist_icon" src="./assets/img/first-aid.svg" alt=""><p class="hospital-info--specialist_name">Đa khoa</p></span> <div class="ambulance-status"><svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill="#1DD75B" id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"></path></svg><p class="ambulance-status--text">Còn xe</p></div>`;
+  boxHospital.innerHTML = `<h2 class="hospital-info--name">${hos.name}</h2> <span class="hospital-info--location"><img class="hospital-info--location_icon" src="./assets/img/map-pin.svg" alt=""><p class="hospital-info--location_address">${hos.location}</p></span> <span class="hospital-info--phone"><img class="hospital-info--phone_icon" src="./assets/img/phone.svg" alt=""><p class="hospital-info--phone_number">${hos.hotline}</p></span> <span class="hospital-info--specialist"><img class="hospital-info--specialist_icon" src="./assets/img/first-aid.svg" alt=""><p class="hospital-info--specialist_name">Đa khoa</p></span> <div class="ambulance-status"><svg xmlns="http://www.w3.org/2000/svg" class="ambulance-status--icon" fill=${colorStatus} id="Flat" viewBox="0 0 256 256"><path d="M232,128A104,104,0,1,1,128,24,104.12041,104.12041,0,0,1,232,128Z"></path></svg><p class="ambulance-status--text">${status}</p></div>`;
   const boxHospitalNavigate = document.createElement('div')
   boxHospitalNavigate.classList.add('hospital-info__navigate-direction')
   boxHospitalNavigate.innerHTML = `<button class="direct-google-map"><a target="_blank" href=${getAdress(locationlatLng, hos.location)}>Dẫn đường</a></button>`
@@ -100,7 +112,12 @@ const getHospitalInfo = async(id) =>{
   btnCallAmbulance.classList.add("direct-search");
   btnCallAmbulance.innerHTML = "Gọi online";
   btnCallAmbulance.addEventListener('click', ()=>{
-    modal.classList.add('open');
+    if(status == "Hết xe"){
+      alert("Đã hết xe, vui lòng chọn xe khác hoặc đợi đến khi có lại xe")
+    } else{
+      modal.classList.add('open');
+    }
+    
   })
   boxHospitalNavigate.appendChild(btnCallAmbulance)
   document.querySelector
@@ -146,6 +163,7 @@ const sortByDistance = (res) => {
 }
 
 export const loadingPage = async () =>{
+  slideLeft();
   await getHospitalList("");
   document.querySelector('.load-page').remove();
   document.getElementsByTagName("body")[0].style.background = "none";
@@ -155,7 +173,14 @@ export const loadingPage = async () =>{
 
 
 findHosInput.addEventListener("input",()=>{
-  getHospitalList(findHosInput.value)
+  getAmount("1842979c32e0.eb8e1b09ef8e6").then((data)=>{
+    if(data.amount==0){
+      getHospitalList(findHosInput.value, data.amount)
+    } else{
+      getHospitalList(findHosInput.value);
+    }
+})
+  
 });
 
 export const addressInput = ()=>{
@@ -188,13 +213,17 @@ const validateForm = async (e)=>{
 }
 document.querySelector('.myForm').addEventListener("submit", validateForm);
 
-listenAmount("1842979c32e0.eb8e1b09ef8e6", (amount)=>{
-  if(amount==0){
-    getHospitalList("", "Hết xe");
-  }else{
-    getHospitalList("");
+
+
+listenAmount("1842979c32e0.eb8e1b09ef8e6", async()=>{
+  let info = document.querySelector('.tab-funtion-map--controls__navigate-container.hospital-info');
+  if(info){
+    if(info.getAttribute("id_hospital") == "1842979c32e0.eb8e1b09ef8e6")
+    getHospitalInfo("1842979c32e0.eb8e1b09ef8e6")
   }
+  getHospitalList("");
 })
+
 
 const getAdress = (latLng, hosLocation) =>{
   var value = document.querySelector('.map-search-location--input').value;
