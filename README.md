@@ -13,7 +13,8 @@ Chức năng gọi điện thoại cho bệnh viện:
 + Trang ontheway hiển thị trạng thái xe hiện tại đã xuất phát hay đến vị trí của bệnh nhân hay chưa
 + Trang onthe way cũng hiển thị bản đồ cho phép xem vị trí của bệnh nhân và tài xế
 + Khi tài xế đến nơi xác nhận hoàn thành cuốc thì tự động chuyển về trang chủ
-+ Hệ sinh thái còn có trang  HospitalDriver (https://hospital-driver.vercel.app/) dành cho tài xế, có thể xem thêm thông tin trong repository HospitalDriver (https://github.com/CodeWithMe-FPT/HospitalDriver)
++ Hệ sinh thái còn có trang  HospitalDriver (https://hospital-driver.vercel.app/) dành cho tài xế
++ Có thể xem thêm thông tin trong repository HospitalDriver (https://github.com/CodeWithMe-FPT/HospitalDriver)
 
 Một số chức năng bổ sung như:
 + Nút định vị sử dụng Geolocation API
