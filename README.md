@@ -1,4 +1,4 @@
-Web tìm kiếm bệnh viện gần nhất
+HosMap dự án tìm kiếm bệnh viện gần nhất
 
 Sử dụng Google Map API render map, autocomplete address, get location form marker.
 
@@ -14,4 +14,6 @@ Chức năng gọi điện thoại cho bệnh viện:
 
 Một số chức năng bổ sung như:
 + Nút định vị sử dụng Geolocation API
++ Nút chuyển đổi lớp bản đồ
 + Marker có thể di chuyển được và tự động cập nhật lại vị trí ( Phù hợp ở những nơi không có địa chỉ )
++ Nút chỉ đường tự động chuyển đến trang chỉ đường của Google Map, nhập sẵn vị trí bệnh nhân và bệnh viện
