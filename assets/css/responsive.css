@@ -1,88 +1,100 @@
 @media (max-width: 740px) {
+  .modal-dialog {
+    margin: 8px;
+  }
+  body {
+    overflow: unset;
+  }
+  #content .container-tab-function-map {
+    min-width: unset;
+    max-width: unset;
+    width: 100%;
+    animation: openSlide 0.7s;
+  }
 
-    .modal-dialog{
-        margin: 8px;
-    }
-    body{
-        overflow: unset;
-    }
-    #content .container-tab-function-map{
-        min-width: unset;
-        max-width: unset;
-        width: 100%;
-        animation: openSlide 0.7s;
-    }
+  #content .map-container .map-type {
+    left: 10px;
+    bottom: 70px;
+  }
 
-    #content .map-container .map-type{
-        left: 10px;
-        bottom: 70px;
-    }
+  #content .map-container .find-location-button {
+    bottom: 70px;
+  }
 
-    #content .map-container .find-location-button{
-        bottom: 70px;
-    }
+  #content .map-search-location-container {
+    top: 25px;
+    left: 5px;
+  }
 
-    #content .map-search-location-container{
-        top: 25px;
-        left: 5px;
-    }
+  #content .map-search-location--input {
+    width: 320px;
+  }
 
-    #content .map-search-location--input{
-        width: 320px;
-    }
+  #content
+    .tab-funtion-map--controls__hospital-container
+    .tab-funtion-map--controls__hospital-info {
+  }
 
-    #content .tab-funtion-map--controls__hospital-container .tab-funtion-map--controls__hospital-info{}
-
-    /* #content .container-tab-function-map{
+  /* #content .container-tab-function-map{
         display: none;
     } */
-    #content .map-container{
-        display: none;
-    }
-    #content .map-container .btn-hide-side-controls{
-        height: 60px;
-        width: 18px;
-        color: #fff;
-        background-color: #3E8CFFFF;
-        border-radius: 0 7px 7px 0;
-        position: absolute;
-        top: calc(50% - 30px);
-        z-index: 1001;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-    }
-    #content .btn-hide-side-controls .svg-inline--fa{
-        display: inline-block;
-        font-size: inherit;
-        height: 1em;
-        overflow: visible;
-        vertical-align: -0.125em;
-        font-size: 18px;
-    }
+  #content .map-container {
+    display: none;
+  }
+  #content .map-container .btn-hide-side-controls {
+    height: 60px;
+    width: 18px;
+    color: #fff;
+    background-color: #3e8cffff;
+    border-radius: 0 7px 7px 0;
+    position: absolute;
+    top: calc(50% - 30px);
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  #content .btn-hide-side-controls .svg-inline--fa {
+    display: inline-block;
+    font-size: inherit;
+    height: 1em;
+    overflow: visible;
+    vertical-align: -0.125em;
+    font-size: 18px;
+  }
 
-    #content .hospital-info .hospital-info--img{
-        max-height: 200px;
-    }
+  #content .hospital-info .hospital-info--img {
+    max-height: 200px;
+  }
 
-    .open-map{
-        position: fixed;
-        border-radius: 20px;
-        font-size: 15px;
-        font-family: "Roboto",sans-serif;
-        background: #3E8CFFFF;
-        color: #fff;
-        padding: 10px 15px 10px 15px;
-        border: none;
-        cursor: pointer;
-        width: 150px;
-        left: calc(50% - 75px);
-        bottom: 25px;
-        display: block;
+  .open-map {
+    position: fixed;
+    border-radius: 20px;
+    font-size: 15px;
+    font-family: "Roboto", sans-serif;
+    background: #3e8cffff;
+    color: #fff;
+    padding: 10px 15px 10px 15px;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    left: calc(50% - 75px);
+    bottom: 25px;
+    display: block;
+  }
+  @keyframes openSlide {
+    from {
+      width: 200px;
     }
-    @keyframes openSlide {
-        from {width: 200px;}
-        to {width: 100%;}
+    to {
+      width: 100%;
     }
+  }
+}
+
+@media (max-width: 960px) {
+  .load-page .img-load-page {
+    width: 100%;
+  }
 }
